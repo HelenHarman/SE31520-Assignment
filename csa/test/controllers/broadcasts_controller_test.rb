@@ -18,7 +18,7 @@ class BroadcastsControllerTest < ActionController::TestCase
 
   test "should create broadcast" do
     assert_difference('Broadcast.count') do
-      post :create, broadcast: { content: @broadcast.content, user_id: @broadcast.user_id }
+        post :create, broadcast: { content: @broadcast.content, user_id: @broadcast.user_id }#@broadcast.user_id
     end
 
     assert_redirected_to broadcast_path(assigns(:broadcast))

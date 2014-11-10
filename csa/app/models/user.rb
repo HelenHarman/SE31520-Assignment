@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # Include all fields in this or related classes that may be searched
   @@search_columns = ["firstname", "surname", "grad_year", "phone", "email"]
 
+
   validates_presence_of :firstname, :surname, :grad_year, :email
   validates_numericality_of :grad_year,
                             greater_than_or_equal_to: 1970,

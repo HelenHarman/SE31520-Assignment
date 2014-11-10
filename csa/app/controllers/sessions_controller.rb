@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  force_ssl except: [:destroy]
+    #force_ssl except: [:destroy]
 
   skip_before_action :login_required
 
