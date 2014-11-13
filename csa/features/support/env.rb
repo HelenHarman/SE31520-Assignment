@@ -19,6 +19,7 @@ SimpleCov.start do
     add_group 'Views', 'app/views'
 end
 
+
 require 'cucumber/rails'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
@@ -70,4 +71,24 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+Before do
+    DatabaseCleaner.start
+    load Rails.root.join('db/seeds.rb')
+end
+
+After do |scenario|
+    DatabaseCleaner.clean
+end
+#Before do
+#ActiveRecord::FixtureSet.reset_cache
+#fixtures_folder = File.join(Rails.root, 'test', 'fixtures')
+#fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
+#ActiveRecord::FixtureSet.create_fixtures(fixtures_folder, fixtures)
+#end
+#f = ActiveRecord::FixtureSet.new( ActiveRecord::Base.connection, 'users', nil, "test/fixtures/users" )
+#ActiveSupport::TestCase.
+#f.instantiate_all_loaded_fixtures()
+#f.insert_fixtures
+#USERS = YAML.load_file("test/fixtures/users.yml")
+
 

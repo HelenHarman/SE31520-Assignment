@@ -1,10 +1,5 @@
-
 When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
     fill_in(field.gsub(' ', '_'), :with => value)
+    #puts "User: #{USERS['one']['surname']}"
 end
 
-When /^I press "([^\"]*)"$/ do |button|
-    within("#form_buttons") do
-        click_button(button)
-    end
-end

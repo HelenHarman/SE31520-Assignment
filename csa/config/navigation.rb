@@ -56,18 +56,18 @@ SimpleNavigation::Configuration.run do |navigation|
       show_user = ''
     end
     # Highlight the home tab either if the path is / or /home
-    primary.item :home, 'Home', '/home', highlights_on: /(^\/$)|(^\/home)/
+    primary.item :home, 'Home', '/home', :link => {:id => 'home'}, highlights_on: /(^\/$)|(^\/home)/
     primary.item :jobs, 'Jobs', '/jobs'
-    primary.item :profile, 'Profile', show_user,
+    primary.item :profile, 'Profile', show_user, :link => {:id => 'profile'},
                  highlights_on: /\/users\/\d/,
                  if: Proc.new { current_user }
     # I want to highlight the Users tab for /users and /users/search etc URLs
     # However, I don't want to highlight for /users/:id since that is covered by
     # the profile tab. We can use a :highlights_on regular expression to do this
-    primary.item :users, 'Users', users_path,
+    primary.item :users, 'Users', users_path, :link => {:id => 'users'},
                  highlights_on: /(^\/users$)|(\/users\/search)|(\/users\?)/,
                  if: Proc.new { is_admin? }
-    primary.item :broadcasts, 'Broadcasts', broadcasts_path,
+    primary.item :broadcasts, 'Broadcasts', broadcasts_path, :link => {:id => 'broadcasts'},
                  highlights_on: /\/broadcasts/,
                  if: Proc.new { is_admin? }
 

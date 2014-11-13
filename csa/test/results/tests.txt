@@ -1,13 +1,17 @@
 Using the default profile...
 Feature: When admin is loged in
-    the correct options are shown in the index page.
+    the correct tabs are avaliable in the index page.
 
   Scenario: When the admin is logged in                     # features/adminLogin.feature:4
     Given I am on the login page                            # features/step_definitions/user_steps.rb:3
-    And I fill in "login-input" with "admin"                # features/step_definitions/adminLogin_steps.rb:2
-    And I fill in "password" with "taliesin"                # features/step_definitions/adminLogin_steps.rb:2
-    When I press "Login"                                    # features/step_definitions/adminLogin_steps.rb:6
+    And I fill in "login-input" with "admin"                # features/step_definitions/adminLogin_steps.rb:1
+    And I fill in "password" with "taliesin"                # features/step_definitions/adminLogin_steps.rb:1
+    When I press "Login" button                             # features/step_definitions/adminLogin_steps.rb:6
     Then page should have "Logged in successfully" message. # features/step_definitions/user_steps.rb:7
+    Then page should have ">Profile</a>" message.           # features/step_definitions/user_steps.rb:7
+    Then I press "profile" link                             # features/step_definitions/user_steps.rb:13
+    Then I should be on user page                           # features/step_definitions/adminLogin_steps.rb:13
+    And page should have "Chris Loftus" message.            # features/step_definitions/user_steps.rb:7
 
 Feature: When no one is logged in
     the index page should be the only page avaliable.
@@ -17,6 +21,6 @@ Feature: When no one is logged in
     Then page should have "Welcome to CS-Alumni News" message. # features/step_definitions/user_steps.rb:7
 
 2 scenarios (2 passed)
-7 steps (7 passed)
-0m0.154s
-Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 75 / 162 LOC (46.3%) covered.
+11 steps (11 passed)
+0m1.358s
+Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 156 / 298 LOC (52.35%) covered.

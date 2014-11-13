@@ -39,6 +39,7 @@ def saveResultsToDB():
                 num_steps = result.group('num')
                 # get the number of steps passed
                 steps_passed = getNumberOfPassesFromString(line)
+                print steps_passed
         
             # insert data into database
             dbConnection = sql.connect(DATABASE_PATHNAME)
@@ -51,7 +52,7 @@ def saveResultsToDB():
 #-------------------------------------------------------------------------------------
 
 def getNumberOfPassesFromString(string):
-    checkForPasses = re.match('.+(?P<num>[0-9]+) passed', string)
+    checkForPasses = re.match('.+[ (](?P<num>[0-9]+) passed', string)
     if checkForPasses:
         return checkForPasses.group('num')
     else:

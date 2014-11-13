@@ -26,10 +26,10 @@ class UserDetail < ActiveRecord::Base
   def self.authenticate(name, passwd)
     user_detail = self.find_by_login(name)
     if user_detail
-      expected_password = encrypt_password(passwd, user_detail.salt)
-      if user_detail.crypted_password != expected_password
-        user_detail = nil
-      end
+     expected_password = encrypt_password(passwd, user_detail.salt)
+     if user_detail.crypted_password != expected_password
+       user_detail = nil
+     end
     end
     user_detail
   end
