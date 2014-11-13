@@ -1,26 +1,56 @@
 Using the default profile...
 Feature: When admin is loged in
     the correct tabs are avaliable in the index page.
+    The admin is allow to edit there details and the details of other users.
 
-  Scenario: When the admin is logged in                     # features/adminLogin.feature:4
-    Given I am on the login page                            # features/step_definitions/user_steps.rb:3
-    And I fill in "login-input" with "admin"                # features/step_definitions/adminLogin_steps.rb:1
-    And I fill in "password" with "taliesin"                # features/step_definitions/adminLogin_steps.rb:1
-    When I press "Login" button                             # features/step_definitions/adminLogin_steps.rb:6
-    Then page should have "Logged in successfully" message. # features/step_definitions/user_steps.rb:7
-    Then page should have ">Profile</a>" message.           # features/step_definitions/user_steps.rb:7
-    Then I press "profile" link                             # features/step_definitions/user_steps.rb:13
-    Then I should be on user page                           # features/step_definitions/adminLogin_steps.rb:13
-    And page should have "Chris Loftus" message.            # features/step_definitions/user_steps.rb:7
+  Scenario: When the admin is logged in                                              # features/admin_login.feature:5
+    Given I am on the login page                                                     # features/step_definitions/navigation_steps.rb:4
+    And I fill in "login-input" with "admin"                                         # features/step_definitions/form_steps.rb:1
+    And I fill in "password" with "taliesin"                                         # features/step_definitions/form_steps.rb:1
+    When I press "Login" within "#form_buttons" button                               # features/step_definitions/navigation_steps.rb:19
+    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
+    Then page should have "Logged in successfully" message.                          # features/step_definitions/navigation_steps.rb:32
+    Then I press "profile" link                                                      # features/step_definitions/navigation_steps.rb:15
+    Then I should be on user "41" page                                               # features/step_definitions/navigation_steps.rb:41
+    And page should have "Chris Loftus" message.                                     # features/step_definitions/navigation_steps.rb:32
+    When I press "Edit" link                                                         # features/step_definitions/navigation_steps.rb:15
+    And I should be on user "41" edit page                                           # features/step_definitions/navigation_steps.rb:45
+    And I fill in "user_firstname" with "Tom"                                        # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
+    Then page should have "Tom Loftus" message.                                      # features/step_definitions/navigation_steps.rb:32
+    When I visit the user "40" page                                                  # features/step_definitions/navigation_steps.rb:8
+    Then page should have "Firstname39 Surname39" message.                           # features/step_definitions/navigation_steps.rb:32
+    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
+    When I press "Edit" link                                                         # features/step_definitions/navigation_steps.rb:15
+    And I should be on user "40" edit page                                           # features/step_definitions/navigation_steps.rb:45
+    And I fill in "user_grad_year" with "2001"                                       # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
+    Then page should have "2001" message.                                            # features/step_definitions/navigation_steps.rb:32
+    When I press "Edit" link                                                         # features/step_definitions/navigation_steps.rb:15
+    And I should be on user "40" edit page                                           # features/step_definitions/navigation_steps.rb:45
+    And I fill in "user_grad_year" with "1969"                                       # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then page should have "Grad year must be greater than or equal to 1970" message. # features/step_definitions/navigation_steps.rb:32
 
 Feature: When no one is logged in
     the index page should be the only page avaliable.
 
-  Scenario: When I load website                                # features/users.feature:4
-    Given I am on the home page                                # features/step_definitions/user_steps.rb:3
-    Then page should have "Welcome to CS-Alumni News" message. # features/step_definitions/user_steps.rb:7
+  Scenario: When I load website                                # features/not_logedin.feature:4
+    Given I am on the home page                                # features/step_definitions/navigation_steps.rb:4
+    Then page should have "Welcome to CS-Alumni News" message. # features/step_definitions/navigation_steps.rb:32
 
-2 scenarios (2 passed)
-11 steps (11 passed)
-0m1.358s
-Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 156 / 298 LOC (52.35%) covered.
+Feature: When invalid data is enetered into the user update form
+    a user freindly error message is displayed.
+
+  Scenario:                                                 # features/update_form.feature:4
+    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:7
+    And I press "profile" link                              # features/step_definitions/navigation_steps.rb:15
+    And I press "Edit" link                                 # features/step_definitions/navigation_steps.rb:15
+    When I fill in "user_firstname" with ""                 # features/step_definitions/form_steps.rb:1
+
+3 scenarios (3 passed)
+35 steps (35 passed)
+0m1.694s
+Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 185 / 323 LOC (57.28%) covered.

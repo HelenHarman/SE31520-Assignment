@@ -5,6 +5,11 @@ Given /^I am on (.+)$/ do |page_name|
     visit path_to(page_name)
 end
 
+When(/^I visit the user "([0-9]+)" page$/) do |user_id|
+    visit user_path(:id => user_id)
+end
+
+
 
 # used for clicking on buttons and links within a page
 Then /^I press "([^\"]*)" link$/ do |link|
@@ -22,19 +27,26 @@ When /^I press "([^\"]*)" button$/ do |button|
 end
 
 
+
 # used to check what page we are on and the content of that page
 Then(/^page should have "([^\"]*)" message\.$/) do |message|
-    #save_and_open_page
-    page.has_content?(message)
+    save_and_open_page
+    assert page.has_content?(message)
 end
 
-Then(/^I should be on user "([0-9]+)" page$/) do |userID|
-    assert page.current_path == user_path(:id => userID)
+Then(/^the status code should be "([0-9]+)"$/) do |status_code|
+    assert page.status_code == status_code.to_i
 end
 
-When(/^I should be on user "([0-9]+)" edit page$/) do |userID|
-    assert page.current_path == edit_user_path(:id => userID)
+Then(/^I should be on user "([0-9]+)" page$/) do |user_id|
+    assert page.current_path == user_path(:id => user_id)
 end
+
+When(/^I should be on user "([0-9]+)" edit page$/) do |user_id|
+    assert page.current_path == edit_user_path(:id => user_id)
+end
+
+
 
 
 
