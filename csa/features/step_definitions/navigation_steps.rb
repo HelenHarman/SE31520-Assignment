@@ -17,7 +17,7 @@ Then /^I press "([^\"]*)" link$/ do |link|
 end
 
 When /^I press "([^\"]*)" within "([^\"]*)" button$/ do |button, div_tag|
-    within(div_tag) do
+    within(:xpath, '//form[@action="/session"]') do#(div_tag) do
         click_button(button)
     end
 end
@@ -30,7 +30,6 @@ end
 
 # used to check what page we are on and the content of that page
 Then(/^page should have "([^\"]*)" message\.$/) do |message|
-    save_and_open_page
     assert page.has_content?(message)
 end
 
@@ -44,6 +43,13 @@ end
 
 When(/^I should be on user "([0-9]+)" edit page$/) do |user_id|
     assert page.current_path == edit_user_path(:id => user_id)
+end
+
+
+
+# saves the content of the page. Used for debugging.
+Then(/^save the page$/) do
+    save_and_open_page
 end
 
 

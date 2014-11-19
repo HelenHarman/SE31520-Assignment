@@ -3,36 +3,31 @@ Feature: When admin is loged in
     the correct tabs are avaliable in the index page.
     The admin is allow to edit there details and the details of other users.
 
-  Scenario: When the admin is logged in                                              # features/admin_login.feature:5
-    Given I am on the login page                                                     # features/step_definitions/navigation_steps.rb:4
-    And I fill in "login-input" with "admin"                                         # features/step_definitions/form_steps.rb:1
-    And I fill in "password" with "taliesin"                                         # features/step_definitions/form_steps.rb:1
-    When I press "Login" within "#form_buttons" button                               # features/step_definitions/navigation_steps.rb:19
-    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
-    Then page should have "Logged in successfully" message.                          # features/step_definitions/navigation_steps.rb:32
-    Then I press "profile" link                                                      # features/step_definitions/navigation_steps.rb:15
-    Then I should be on user "41" page                                               # features/step_definitions/navigation_steps.rb:41
-    And page should have "Chris Loftus" message.                                     # features/step_definitions/navigation_steps.rb:32
-    When I press "Edit" link                                                         # features/step_definitions/navigation_steps.rb:15
-    And I should be on user "41" edit page                                           # features/step_definitions/navigation_steps.rb:45
-    And I fill in "user_firstname" with "Tom"                                        # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
-    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
-    Then page should have "Tom Loftus" message.                                      # features/step_definitions/navigation_steps.rb:32
-    When I visit the user "40" page                                                  # features/step_definitions/navigation_steps.rb:8
-    Then page should have "Firstname39 Surname39" message.                           # features/step_definitions/navigation_steps.rb:32
-    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
-    When I press "Edit" link                                                         # features/step_definitions/navigation_steps.rb:15
-    And I should be on user "40" edit page                                           # features/step_definitions/navigation_steps.rb:45
-    And I fill in "user_grad_year" with "2001"                                       # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
-    And the status code should be "200"                                              # features/step_definitions/navigation_steps.rb:37
-    Then page should have "2001" message.                                            # features/step_definitions/navigation_steps.rb:32
-    When I press "Edit" link                                                         # features/step_definitions/navigation_steps.rb:15
-    And I should be on user "40" edit page                                           # features/step_definitions/navigation_steps.rb:45
-    And I fill in "user_grad_year" with "1969"                                       # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
-    Then page should have "Grad year must be greater than or equal to 1970" message. # features/step_definitions/navigation_steps.rb:32
+  Scenario: When the admin is logged in                     # features/admin_login.feature:5
+    Given I am on the login page                            # features/step_definitions/navigation_steps.rb:4
+    And I fill in "login-input" with "admin"                # features/step_definitions/form_steps.rb:1
+    And I fill in "password" with "taliesin"                # features/step_definitions/form_steps.rb:1
+    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:19
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
+    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:32
+    Then I press "profile" link                             # features/step_definitions/navigation_steps.rb:15
+    Then I should be on user "41" page                      # features/step_definitions/navigation_steps.rb:40
+    And page should have "Chris Loftus" message.            # features/step_definitions/navigation_steps.rb:32
+    When I press "Edit" link                                # features/step_definitions/navigation_steps.rb:15
+    And I should be on user "41" edit page                  # features/step_definitions/navigation_steps.rb:44
+    And I fill in "user_firstname" with "Tom"               # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:25
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
+    Then page should have "Tom Loftus" message.             # features/step_definitions/navigation_steps.rb:32
+    When I visit the user "40" page                         # features/step_definitions/navigation_steps.rb:8
+    Then page should have "Firstname39 Surname39" message.  # features/step_definitions/navigation_steps.rb:32
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
+    When I press "Edit" link                                # features/step_definitions/navigation_steps.rb:15
+    And I should be on user "40" edit page                  # features/step_definitions/navigation_steps.rb:44
+    And I fill in "user_grad_year" with "2001"              # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:25
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
+    Then page should have "2001" message.                   # features/step_definitions/navigation_steps.rb:32
 
 Feature: When no one is logged in
     the index page should be the only page avaliable.
@@ -41,16 +36,56 @@ Feature: When no one is logged in
     Given I am on the home page                                # features/step_definitions/navigation_steps.rb:4
     Then page should have "Welcome to CS-Alumni News" message. # features/step_definitions/navigation_steps.rb:32
 
+  Scenario Outline:                                         # features/not_logedin.feature:8
+    Given I am on the login page                            # features/step_definitions/navigation_steps.rb:4
+    And I fill in "login-input" with "<role>"               # features/step_definitions/form_steps.rb:1
+    And I fill in "password" with "<access>"                # features/step_definitions/form_steps.rb:1
+    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:19
+    Then page should have "Couldn't log you in as" message. # features/step_definitions/navigation_steps.rb:32
+
+    Examples: 
+      | role  | access   |
+      |       | taliesin |
+      | admin |          |
+      | hello | taliesin |
+      | admin | invalid  |
+
 Feature: When invalid data is enetered into the user update form
     a user freindly error message is displayed.
 
-  Scenario:                                                 # features/update_form.feature:4
-    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:7
-    And I press "profile" link                              # features/step_definitions/navigation_steps.rb:15
-    And I press "Edit" link                                 # features/step_definitions/navigation_steps.rb:15
-    When I fill in "user_firstname" with ""                 # features/step_definitions/form_steps.rb:1
+  Scenario: Go to the edit page                                                      # features/update_form.feature:4
+    Given the "admin" with password "taliesin" is logged in                          # features/step_definitions/form_steps.rb:7
+    And I press "profile" link                                                       # features/step_definitions/navigation_steps.rb:15
+    And I press "Edit" link                                                          # features/step_definitions/navigation_steps.rb:15
+    When I fill in "user_firstname" with ""                                          # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then page should have "Firstname can't be blank" message.                        # features/step_definitions/navigation_steps.rb:32
+    When I fill in "user_firstname" with "Tom"                                       # features/step_definitions/form_steps.rb:1
+    And I fill in "user_surname" with ""                                             # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then page should have "Surname can't be blank" message.                          # features/step_definitions/navigation_steps.rb:32
+    When I fill in "user_surname" with "Bloggs"                                      # features/step_definitions/form_steps.rb:1
+    And I fill in "user_email" with "aaa@aber"                                       # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then page should have "Email Bad email address format" message.                  # features/step_definitions/navigation_steps.rb:32
+    When I fill in "user_email" with "aaa@aber.com"                                  # features/step_definitions/form_steps.rb:1
+    And I fill in "user_grad_year" with "1969"                                       # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then page should have "Grad year must be greater than or equal to 1970" message. # features/step_definitions/navigation_steps.rb:32
+    When I fill in "user_grad_year" with "2015"                                      # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then page should have "Grad year must be less than or equal to 2014" message.    # features/step_definitions/navigation_steps.rb:32
+    When I fill in "user_grad_year" with "2013"                                      # features/step_definitions/form_steps.rb:1
+    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:25
+    Then I should be on user "41" page                                               # features/step_definitions/navigation_steps.rb:40
 
-3 scenarios (3 passed)
-35 steps (35 passed)
-0m1.694s
-Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 185 / 323 LOC (57.28%) covered.
+Feature: When a none admin user is logged in
+    they should not have permission to .....//TODO
+
+  Scenario:                                              # features/user_login.feature:4
+    Given the "cwl2" with password "secret" is logged in # features/step_definitions/form_steps.rb:7
+
+8 scenarios (8 passed)
+71 steps (71 passed)
+0m1.554s
+Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 188 / 323 LOC (58.2%) covered.
