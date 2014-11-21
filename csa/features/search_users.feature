@@ -6,4 +6,4 @@ Scenario:
     And I press "users" link
 
     When I type "Lo" into the search field "q" and I choose "Chris Loftus"
-    Then save the page
+    Then page should have "622422" message.

@@ -29,6 +29,15 @@ Feature: When admin is loged in
     And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
     Then page should have "2001" message.                   # features/step_definitions/navigation_steps.rb:32
 
+Feature: The admin user can delete a user
+
+  @javascript
+  Scenario:                                                 # features/delete_user.feature:4
+    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:7
+    And I press "users" link                                # features/step_definitions/navigation_steps.rb:15
+    When I click delete for user "1"                        # features/step_definitions/delete_user_steps.rb:1
+    Then the page should not contain "cwl0@aber.ac.uk"      # features/step_definitions/delete_user_steps.rb:7
+
 Feature: When no one is logged in
     the index page should be the only page avaliable.
 
@@ -36,12 +45,12 @@ Feature: When no one is logged in
     Given I am on the home page                                # features/step_definitions/navigation_steps.rb:4
     Then page should have "Welcome to CS-Alumni News" message. # features/step_definitions/navigation_steps.rb:32
 
-  Scenario Outline:                                         # features/not_logedin.feature:8
-    Given I am on the login page                            # features/step_definitions/navigation_steps.rb:4
-    And I fill in "login-input" with "<role>"               # features/step_definitions/form_steps.rb:1
-    And I fill in "password" with "<access>"                # features/step_definitions/form_steps.rb:1
-    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:19
-    Then page should have "Couldn't log you in as" message. # features/step_definitions/navigation_steps.rb:32
+  Scenario Outline: checks that invalid options can't be entered into login form # features/not_logedin.feature:8
+    Given I am on the login page                                                 # features/step_definitions/navigation_steps.rb:4
+    And I fill in "login-input" with "<role>"                                    # features/step_definitions/form_steps.rb:1
+    And I fill in "password" with "<access>"                                     # features/step_definitions/form_steps.rb:1
+    When I press "Login" within "#form_buttons" button                           # features/step_definitions/navigation_steps.rb:19
+    Then page should have "Couldn't log you in as" message.                      # features/step_definitions/navigation_steps.rb:32
 
     Examples: 
       | role  | access   |
@@ -49,6 +58,16 @@ Feature: When no one is logged in
       | admin |          |
       | hello | taliesin |
       | admin | invalid  |
+
+Feature: Can search for and select a user.
+
+  @javascript
+  Scenario:                                                                # features/search_users.feature:4
+    Given the "admin" with password "taliesin" is logged in                # features/step_definitions/form_steps.rb:7
+    And I press "users" link                                               # features/step_definitions/navigation_steps.rb:15
+search conditions: ["(LOWER(firstname) LIKE :word1 OR LOWER(surname) LIKE :word1 OR LOWER(grad_year) LIKE :word1 OR LOWER(phone) LIKE :word1 OR LOWER(email) LIKE :word1)", {:word1=>"%lo%"}]
+    When I type "Lo" into the search field "q" and I choose "Chris Loftus" # features/step_definitions/search_users_steps.rb:3
+    Then page should have "622422" message.                                # features/step_definitions/navigation_steps.rb:32
 
 Feature: When invalid data is enetered into the user update form
     a user freindly error message is displayed.
@@ -82,10 +101,11 @@ Feature: When invalid data is enetered into the user update form
 Feature: When a none admin user is logged in
     they should not have permission to .....//TODO
 
-  Scenario:                                              # features/user_login.feature:4
-    Given the "cwl2" with password "secret" is logged in # features/step_definitions/form_steps.rb:7
+  Scenario:                                                 # features/user_login.feature:4
+    Given the "cwl2" with password "secret" is logged in    # features/step_definitions/form_steps.rb:7
+    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:32
 
-8 scenarios (8 passed)
-71 steps (71 passed)
-0m1.554s
-Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 188 / 323 LOC (58.2%) covered.
+10 scenarios (10 passed)
+80 steps (80 passed)
+0m13.378s
+Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 232 / 323 LOC (71.83%) covered.
