@@ -25,3 +25,15 @@ And(/^only Twitter option is checked$/) do
     
     check('feeds_twitter')
 end
+
+Then(/^I click show on the first broadcast$/) do
+    click_link("Show")
+end
+
+
+#used for deleting a broadcast
+When(/^I click delete for broadcast "([0-9]+)"$/) do |broadcast_id|
+    sleep(1)
+    click_link("Destroy", :href => "#{broadcast_path(:id => broadcast_id)}?page=1" )
+    page.driver.browser.switch_to.alert.accept
+end

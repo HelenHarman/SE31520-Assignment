@@ -34,11 +34,3 @@ Scenario: When the admin is logged in
     And I press "Update" button
     And the status code should be "200"
     Then page should have "2001" message.
-
-
-    
-
-#When I press "change" link
-#And I should be on editting "50" page
-#And I fill in "change this to that" with "change that to this"
-#And I press "save" button

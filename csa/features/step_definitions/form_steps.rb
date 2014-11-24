@@ -12,3 +12,13 @@ Given(/^the "(.*?)" with password "(.*?)" is logged in$/) do |user_name, passwor
         click_button("Login")
     end
 end
+
+
+
+When(/^I check "(.*?)"$/) do |check_box_name|
+    check(check_box_name)
+end
+
+When(/^I uncheck "(.*?)"$/) do |check_box_name|
+    uncheck(check_box_name)
+end

@@ -1,14 +1,9 @@
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
 # used for visiting a specific page
-Given /^I am on (.+)$/ do |page_name|
+Given /^I (?:am|visit) (?:on|the) (.+)$/ do |page_name|
     visit path_to(page_name)
 end
-
-When(/^I visit the user "([0-9]+)" page$/) do |user_id|
-    visit user_path(:id => user_id)
-end
-
 
 
 # used for clicking on buttons and links within a page
@@ -24,6 +19,7 @@ end
 
 When /^I press "([^\"]*)" button$/ do |button|
     click_button(button)
+    sleep(1)
 end
 
 
@@ -33,16 +29,18 @@ Then(/^page should have "([^\"]*)" message\.$/) do |message|
     assert page.has_content?(message)
 end
 
+Then(/^the page should not contain "(.*?)"$/) do |message|
+    assert !page.has_content?(message)
+end
+
 Then(/^the status code should be "([0-9]+)"$/) do |status_code|
     assert page.status_code == status_code.to_i
 end
 
-Then(/^I should be on user "([0-9]+)" page$/) do |user_id|
-    assert page.current_path == user_path(:id => user_id)
-end
 
-When(/^I should be on user "([0-9]+)" edit page$/) do |user_id|
-    assert page.current_path == edit_user_path(:id => user_id)
+# check what page we are on
+Then(/^I should be on (.+)$/) do |page_name|
+    assert page.current_path == path_to(page_name)
 end
 
 
@@ -53,8 +51,14 @@ Then(/^save the page$/) do
 end
 
 
+#Then(/^I should be on user "([0-9]+)" page$/) do |user_id|
+#   assert page.current_path == user_path(:id => user_id)
+#end
 
+#When(/^I should be on user "([0-9]+)" edit page$/) do |user_id|
+#    assert page.current_path == edit_user_path(:id => user_id)
+#end
 
-
-
-
+#Then(/^I should be on rm (.+)$/) do |page_name| #TODO rm rm
+#    assert page.current_path == path_to(page_name)
+#end

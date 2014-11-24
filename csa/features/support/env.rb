@@ -76,9 +76,15 @@ Before do
     load Rails.root.join('db/seeds.rb')
 end
 
+
 After do |scenario|
     DatabaseCleaner.clean
 end
+
+# Need to set the admin email address for NewBroadcasts otherwise error will be given while broadcasting to emails
+load Rails.root.join('config/environments/cucumber_test.rb')
+
+
 #Before do
 #ActiveRecord::FixtureSet.reset_cache
 #fixtures_folder = File.join(Rails.root, 'test', 'fixtures')

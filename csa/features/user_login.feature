@@ -10,3 +10,9 @@ Scenario:
     Then save the page
     And "broadcast" tab should not be avaliable
 
+    #check that get redirected back to home page when try to access the broadcasts page
+    When I visit the broadcasts page
+    Then I get redirected to the home page
+
+    When I visit the user "40" page
+    Then I get redirected to the home page

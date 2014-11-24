@@ -4,4 +4,6 @@ class Image < ActiveRecord::Base
                                       medium: '80x80#',
                                       small: '50x50#',
                                       tiny: '30x30#' }
+                                      
+   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 end
