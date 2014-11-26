@@ -26,6 +26,16 @@ Scenario:
     And page should have "Firstname1" message.
     And page should have "Firstname10" message.
 
+
+    #Search on surname and firstname
+    When I check "surname"
+    And I check "firstname"
+    And I fill in "q" with "Surname"
+    And I press "Search" button
+    Then the page should not contain "Chris"
+    And page should have "Firstname1" message.
+    And page should have "Firstname10" message.
+
     #check that when a search does not match any results the correct message is shown
     When I fill in "q" with "None"
     And I press "Search" button

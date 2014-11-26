@@ -14,5 +14,13 @@ Scenario:
     When I visit the broadcasts page
     Then I get redirected to the home page
 
+    When I visit the users page
+    Then I get redirected to the home page
+
     When I visit the user "40" page
     Then I get redirected to the home page
+
+    When I visit the user "40" edit page
+    Then I get redirected to the home page
+
+

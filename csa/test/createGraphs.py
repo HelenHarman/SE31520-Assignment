@@ -1,3 +1,11 @@
+### createGraphs.py
+# Creates a graph out of the results for running the cucumber tests.
+# Used by runTests.py
+#
+# @author Helen Harman (heh14@aber.ac.uk)
+# @created 10 November 2014
+# @last_modified 25 Novuember 2014
+
 from datetime import datetime
 import sqlite3 as sql
 
@@ -18,13 +26,8 @@ def createGraphs(DATABASE_PATHNAME):
     cur = dbConnection.cursor()
     cur.execute('SELECT * FROM results;')
     results = cur.fetchall()
-    num_scenarios = []
-    scenarios_passed = []
-    raw_dates = []
-    coverage = []
-    num_steps = []
-    steps_passed = []
-    for result in results:
+    num_scenarios, scenarios_passed, raw_dates, coverage, num_steps, steps_passed = [], [], [], [], [], []
+    for result in results: # get all the results from querying the database in to the correct arrays.
         num_scenarios.append(result[1])
         scenarios_passed.append(result[2])
         num_steps.append(result[4])
@@ -36,18 +39,19 @@ def createGraphs(DATABASE_PATHNAME):
     # plot a graph to show the results
     fig, (ax, ax3, ax2) = plt.subplots(1, 3, sharey=False, figsize=(13, 7), dpi=100)
 
-    x = [dt.datetime.strptime(d, '%Y-%m-%d %H:%M:%S') for d in raw_dates]
+    x = [dt.datetime.strptime(d, '%Y-%m-%d %H:%M:%S') for d in raw_dates] # Sets the data format to a format understood by matplotlib
 
     createScenariosGraph(ax, num_scenarios, scenarios_passed, x)
     createCoverageGraph(ax2, coverage, x)
     createStepsGraph(ax3, num_steps, steps_passed, x)
 
-    fig.autofmt_xdate()
+    fig.autofmt_xdate() # will give the time when zoomed into area of the graph, otherwise the date will be shown
     plt.show()
-
 
 #-------------------------------------------------------------------------------------
 
+##
+# Plots the number of scenarios and the number of scenarios passed graph
 def createScenariosGraph(ax, num_scenarios, scenarios_passed, x):
     
     line_up, = ax.plot(x, num_scenarios, label='Number of Scenarios')
@@ -62,6 +66,8 @@ def createScenariosGraph(ax, num_scenarios, scenarios_passed, x):
 
 #-------------------------------------------------------------------------------------
 
+##
+# Plots the coverage graph
 def createCoverageGraph(ax2, coverage, x):
     # plot the coverage over time graph
     ax2.plot(x, coverage, label='coverage')
@@ -72,6 +78,8 @@ def createCoverageGraph(ax2, coverage, x):
 
 #-------------------------------------------------------------------------------------
 
+##
+# Plots the number of steps and the number of steps passed graph
 def createStepsGraph(ax3, num_steps, steps_passed, x):
     # plot the coverage over time graph
     ax3LineUp = ax3.plot(x, num_steps, label='Number of Steps')
@@ -87,6 +95,8 @@ def createStepsGraph(ax3, num_steps, steps_passed, x):
 
 #-------------------------------------------------------------------------------------
 
+##
+# Sets up the legend for the scenarios and steps graphs.
 def createLegend(ax):
     legend = ax.legend(bbox_to_anchor=(0.98, 0.98), loc=1, borderaxespad=0., prop={'size':4})
     for label in legend.get_texts():

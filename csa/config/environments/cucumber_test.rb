@@ -7,4 +7,8 @@ Csa::Application.configure do
         port: 25
    }
   ADMIN_EMAIL="admin@host.ac.com"
+  
+  
+  Paperclip.options[:command_path] = '/usr/local/Cellar/imagemagick/6.8.9-7/bin/'#'/usr/local/bin/'
+
 end

@@ -12,7 +12,7 @@ module NavigationHelpers
             when /the login\s?page/
                 new_session_path
                 
-            when /the users\s?page/
+            when /users\s?page/
                 users_path
              
             # handle a user's page request
@@ -32,6 +32,12 @@ module NavigationHelpers
             # handle a broadcasts page request
             when /broadcasts page/
                 broadcasts_path
+                
+            when /broadcast "\d+" page/
+            begin
+                /(?<broadcast_id>\d+)/ =~ page_name
+                broadcast_path(:id => broadcast_id)
+            end
 
             else #The defualt will add unscores to the page name and try to visit the page.
                  # if the page is not found error will be thrown

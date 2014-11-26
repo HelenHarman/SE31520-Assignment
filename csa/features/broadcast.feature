@@ -38,7 +38,15 @@ Scenario: Adding multiple broadcasts
     And I press "New broadcast" link
     Then I enter broadcast "cucumber 1st of multiple broadcasts" with the current time
     And I press "Broadcast" button
+    Then check twitter updated with "cucumber 1st of multiple broadcasts"
 
     Then I press "New broadcast" link
     Then I enter broadcast "cucumber 2nd of multiple broadcasts" with the current time
     And I press "Broadcast" button
+    Then check twitter updated with "cucumber 2nd of multiple broadcasts"
+
+
+    Then I visit the broadcast "1" page
+    And page should have "cucumber 1st of multiple broadcasts" message.
+    Then I visit the broadcast "2" page
+    And page should have "cucumber 2nd of multiple broadcasts" message.

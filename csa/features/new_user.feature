@@ -17,7 +17,9 @@ Scenario Outline: New valid user. Also does the valid range check on the year.
     And I fill in "user_user_detail_attributes_password_confirmation" with "password"
 
     And I press "Create" button
-#TODO check user has been added
+    Then page should have "Account was successfully created" message.
+    When I visit the user "42" page
+    Then page should have "Fred Blogs" message.
 
     Examples:
         | grad_year |
@@ -61,8 +63,9 @@ Scenario Outline: checks that invalid options can't be entered into new user for
 
 
 
+Scenario: visit none exisiting account get redirected to users page
+    Given the "admin" with password "taliesin" is logged in
+    And I visit the user "70" page
+    Then I should be on the users page
+    And page should have "Account no longer exists" message.
 
-
-
-
-#TODO visit none exisiting account get redirected to users page

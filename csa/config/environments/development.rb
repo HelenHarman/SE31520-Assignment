@@ -51,7 +51,7 @@ Csa::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  Paperclip.options[:command_path] = '/usr/local/Cellar/'#'/usr/local/bin/'
+  Paperclip.options[:command_path] = '/usr/local/Cellar/imagemagick/6.8.9-7/bin/'#'/usr/local/bin/'
 
   #config.use_ssl = true
   config.use_ssl = false
