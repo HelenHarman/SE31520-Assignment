@@ -1,0 +1,51 @@
+Section,Action,Test content,Input,Output,Criteria / Pass?
+Users,Admin login,Check that the admin user can login.,"Login: admin password: taliesin",“Logged in successfully” should be displayed.,"Message displayed to user, and home page displayed."
+,,Admin can edit other users,"Visit user 40’s edit page.  Grad year: 2001 Click update button.",User 40’s page shows 2001 for the grad year.,User has be correctly updated.
+,Edit user,Check that invalid information can not be entered into the edit user form.,firsname: empty,“Surname can't be blank” should be displayed.,Message displayed to the user and redirects to edit user form.
+,,,surname: empty,“Surname can't be blank” should be displayed.,As above
+,,,email: aaa@aber,"""Email Bad email address format”",As above
+,,,Grad Year: 1969,"“Grad year must be greater than or equal to 1970""",As above
+,,,Grad Year: 2015,"""Grad year must be less than or equal to 2014”",As above
+,,Valid information entered.,Grad Year: 2013,User 41 page should be displayed.,User 41 page shown with updated information.
+,User - update image,Check that the user’s image can be updated.,Upload file : /images/dragonFly.jpg,"User page displayed, showing the new image.",The new user’s image is displayed.
+,New user,Check that valid information can be entered into the new user form.,"Firstname : Fred Surname: Blogs Phone: 07576947302 Grad Year: 2014 Email: fred@outlook.com login: fred password: password password: password",“Account was successfully created” should be displayed.,Message is displayed to user.
+,,(valid input for range check for the grad year) ,"As above but with Grad Year: 1970",As above,As above
+,,,"As above but with Grad Year: 2000",As above,As above
+,,Check that invalid information can not be entered into the new user form.,Empty firstname.,“Firstname can't be blank” should be displayed.,Message displayed to the user and redirects to new user form.
+,,,Empty surname.,“Surname can't be blank” should be displayed.,As above
+,,,Empty Grad Year,“Grad year can't be blank”,As above
+,,,Grad Year: abcd,"“Grad year is not a number""",As above
+,,(invalid input for range check for the grad year),Grad Year: 1969,"“Grad year must be greater than or equal to 1970""",As above
+,,,Grad Year: 2015,"""Grad year must be less than or equal to 2014”",As above
+,,,Empty email,“Email can't be blank”,As above
+,,,Email: invalid,"""Email Bad email address format”",As above
+,,,Email: cwl1@aber.ac.uk,"""Email has already been taken“",As above
+,,,Empty login,"""User detail login can't be blank”",As above
+,,,cwl1,"""User detail login has already been taken”",As above
+,,,Empty password,"""User detail login has already been taken”",As above
+,,,"Password: password Confirm password: different","“Confirm password should match password""",This feature is NOT implemented. Test will be added once implemented.
+,GET user,Check that user gets redirected when trying to visit a none existing account.,Visit user 70 page.,"“Account no longer exists""",Message is displayed and user is redirected to users page.
+,Delete User,Check that a user can be deleted.,Click delete on user 1.,User should no longer exist.,User that has been deleted does not get shown in the list of users.
+,,Check you can not delete the user that is logged in.,"Delete the admin user, who is logged in.",Should show error message “Can not delete current user”,This is not implemented. You can delete the current user and then “RecordNotFound” error is displayed.
+,Search Users,Check that the search drop down list works correctly,"Search: Lo Click on Chris Loftus in the drop down list.",User details are displayed.,Can click a user on the drop down list and the user is shown.
+,,Check that user can search using the different search options.,"Checked : surname Search: Surname",All users but Loftus are shown.,Only users with a surname containing Surname are displayed.
+,,,"Check: first name
+Search: Firstname",All users but Chris are shown.,Only users with a first name containing Firstname are displayed.
+,,Check that no users are displayed when the database does not contain any users matching the search.,Search: None,“No entries found” is displayed.,The correct message is displayed to the user.
+,Normal user accessibility.,Check that the user does not have added to other users and the broadcasts page.,cwl2 is logged in,"Profile tab available, Broadcast tab not available",The correct tabs are displayed to the user.
+,,Check that if the user tries to visit a page they are unauthorised to access they are redirected to the home page.,"cwl2 is logged in. Visit users page.",Redirected to home page.,User gets redirected to the home page.
+,,,"cwl2 is logged in. Visit user 40 page.",Redirected to home page.,User gets redirected to the home page.
+,,,"cwl2 is logged in. Visit user 40 edit page.",Redirected to home page.,User gets redirected to the home page.
+,Login,Check that an invalid login does not get accepted.,"login: empty password: taliesin","""Couldn't log you in as” should be displayed.",The message is displayed to the user.
+,,,"login: admin password: empty","""Couldn't log you in as” should be displayed.",As above
+,,,"login: hello password: taliesin","""Couldn't log you in as” should be displayed.",As above
+,,,"login: admin password: invalid","""Couldn't log you in as” should be displayed.",As above
+,Not Logged In,Check that when is logged in they can not accessed anything but the login and the home page.,Visit user 40 page.,Redirected to the login page,The login page is displayed to the user.
+,Log out,Check that a user can log out.,"Login as admin. Logout.",Profile tab should not be available.,The user is logged out.
+Broadcasts,Create Broadcast,Check that a new broadcast can be created and added to twitter,"Check: Twitter Broadcast: cucumber broadcast (plus the current time)",The broadcast is successfully created. The broadcast is also posted on twitter. ,Broadcast shown on to user. Tweet has been made.
+,,Check that a broadcast can be made to multiple feeds.,"Check: Twitter and Email. Broadcast: cucumber 1st of multiple broadcasts",The broadcast is successfully created. It has been broadcast to Twitter and Email.,"The Broadcast and “Email, Twitter” is displayed to the user. "
+,,Check that multiple broadcasts can be made.,Broadcast: cucumber 2nd of multiple broadcasts,Both the broadcast should be successfully created. ,Two broadcasts are shown on the broadcasts page.
+,,Check that a broadcast of over 150 characters can not be entered when the twitter tick box is checked.,"Check: Twitter Broadcast: ""this post will be longer than a twitter feed post is allowed to be. It has been written for cucumber testing of CSA app. Should not be posted""","""Broadcast was successfully saved, but problems broadcasting to one or more feeds” should be displayed.",Message given to user and the broadcast is not made. Broadcasts page should be shown.
+,Delete Broadcast,Check that a broadcast can be deleted.,Click delete on the first broadcast.,The broadcast is removed from the table.,The broadcast is no longer displayed in the table.
+,View Broadcast,"Check that the user can view a broadcast, and the back button returns to the broadcasts page. ","Check the view broadcast button. ",Broadcast is shown.,“cucumber broadcast” is displayed to the user
+,,,Click the back link.,List of broadcasts is shown.,Have returned to the broadcasts page.

@@ -1,3 +1,9 @@
+## user_image_steps.rb
+# Contains the steps for uploading and checking for a users image.
+#
+# @author Helen Harman
+# @created November 2014
+
 Then /^I "([^\"]*)" "([^\"]*)"$/ do |upload_button, file_name|
     attach_file(upload_button, File.join(Rails.root, 'features', file_name))
     

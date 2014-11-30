@@ -11,11 +11,10 @@ module NavigationHelpers
             # handle new session page request
             when /the login\s?page/
                 new_session_path
-                
+               
+            # handle a user's page request
             when /users\s?page/
                 users_path
-             
-            # handle a user's page request
             when /user "\d+" page/
             begin
                 /(?<user_id>\d+)/ =~ page_name
@@ -32,7 +31,6 @@ module NavigationHelpers
             # handle a broadcasts page request
             when /broadcasts page/
                 broadcasts_path
-                
             when /broadcast "\d+" page/
             begin
                 /(?<broadcast_id>\d+)/ =~ page_name

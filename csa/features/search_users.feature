@@ -1,7 +1,7 @@
-Feature: Can search for and select a user.
+Feature: Can search via firstname and surname, and select that user.
 
 @javascript
-Scenario:
+Scenario: Search for and select the user Chris Loftus. Search for a user by surname and by firstname.
     Given the "admin" with password "taliesin" is logged in
     And I press "users" link
 

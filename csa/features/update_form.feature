@@ -1,7 +1,7 @@
 Feature: When invalid data is enetered into the user update form
     a user freindly error message is displayed.
 
-Scenario: Go to the edit page
+Scenario: Update the admin users details from the edit page and check that helpful error message is displayed.
     Given the "admin" with password "taliesin" is logged in
     And I press "profile" link
     And I press "Edit" link

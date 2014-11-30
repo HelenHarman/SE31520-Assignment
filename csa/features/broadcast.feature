@@ -1,7 +1,7 @@
 Feature: Create a new broardcast and check it is tweeted
 
 @javascript
-Scenario:
+Scenario: Tweet a broadcast and check that it has been tweeted. Delete that broadcast and check it has been deleted.
     Given the "admin" with password "taliesin" is logged in
     And I press "broadcasts" link
     And I press "New broadcast" link

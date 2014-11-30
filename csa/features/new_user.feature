@@ -2,7 +2,7 @@ Feature: Test that a new user can be created.
             Invalid option can not be entered into the new user form
 
 
-Scenario Outline: New valid user. Also does the valid range check on the year.
+Scenario Outline: Enter a new valid user and check they are added. Also perform the valid range check on the graduation year.
     Given the "admin" with password "taliesin" is logged in
     And I press "users" link
     And I press "New User" link
@@ -28,7 +28,7 @@ Scenario Outline: New valid user. Also does the valid range check on the year.
         |   2000    |
 
 
-Scenario Outline: checks that invalid options can't be entered into new user form
+Scenario Outline: Checks that invalid options can't be entered into new user form
     Given the "admin" with password "taliesin" is logged in
     And I press "users" link
     And I press "New User" link
@@ -63,7 +63,7 @@ Scenario Outline: checks that invalid options can't be entered into new user for
 
 
 
-Scenario: visit none exisiting account get redirected to users page
+Scenario: Check that you get redirected to users page when you try to visit none exisiting account.
     Given the "admin" with password "taliesin" is logged in
     And I visit the user "70" page
     Then I should be on the users page

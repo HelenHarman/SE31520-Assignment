@@ -71,12 +71,12 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+# Cleans-up the database between each scenario.
 Before do
     DatabaseCleaner.start
     load Rails.root.join('db/seeds.rb')
 end
-
-
 After do |scenario|
     DatabaseCleaner.clean
 end
@@ -84,17 +84,5 @@ end
 # Need to set the admin email address for NewBroadcasts otherwise error will be given while broadcasting to emails
 load Rails.root.join('config/environments/cucumber_test.rb')
 
-
-#Before do
-#ActiveRecord::FixtureSet.reset_cache
-#fixtures_folder = File.join(Rails.root, 'test', 'fixtures')
-#fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
-#ActiveRecord::FixtureSet.create_fixtures(fixtures_folder, fixtures)
-#end
-#f = ActiveRecord::FixtureSet.new( ActiveRecord::Base.connection, 'users', nil, "test/fixtures/users" )
-#ActiveSupport::TestCase.
-#f.instantiate_all_loaded_fixtures()
-#f.insert_fixtures
-#USERS = YAML.load_file("test/fixtures/users.yml")
 
 

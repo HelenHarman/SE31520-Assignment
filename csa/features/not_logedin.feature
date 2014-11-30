@@ -1,11 +1,11 @@
 Feature: When no one is logged in
     the index page should be the only page avaliable.
 
-Scenario: When I load website
+Scenario: Check home page is loaded when we first visit the website
     Given I am on the home page
     Then page should have "Welcome to CS-Alumni News" message.
 
-Scenario Outline: checks that invalid options can't be entered into login form
+Scenario Outline: Checks that invalid options can't be entered into login form
     Given I am on the login page
     And I fill in "login-input" with "<role>"
     And I fill in "password" with "<access>"
@@ -32,7 +32,7 @@ Scenario: Redirects to login page when try to access any page (that isn't the ho
 
 
 
-Scenario: Able to log in and log out
+Scenario: Checks a user is able to log in and log out
     When I am on the login page
     And I fill in "login-input" with "admin"
     And I fill in "password" with "taliesin"

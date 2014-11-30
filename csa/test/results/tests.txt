@@ -1,106 +1,108 @@
 Using the default profile...
 Feature: When admin is loged in
     the correct tabs are avaliable in the index page.
-    The admin is allow to edit there details and the details of other users.
+    The admin is allow to edit their details and the details of other users.
 
-  Scenario: When the admin is logged in                     # features/admin_login.feature:5
-    Given I am on the login page                            # features/step_definitions/navigation_steps.rb:4
-    And I fill in "login-input" with "admin"                # features/step_definitions/form_steps.rb:1
-    And I fill in "password" with "taliesin"                # features/step_definitions/form_steps.rb:1
-    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:14
-    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
-    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:28
-    Then I press "profile" link                             # features/step_definitions/navigation_steps.rb:10
-    Then I should be on user "41" page                      # features/step_definitions/navigation_steps.rb:42
-    And page should have "Chris Loftus" message.            # features/step_definitions/navigation_steps.rb:28
-    When I press "Edit" link                                # features/step_definitions/navigation_steps.rb:10
-    And I should be on user "41" edit page                  # features/step_definitions/navigation_steps.rb:42
-    And I fill in "user_firstname" with "Tom"               # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:20
-    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
-    Then page should have "Tom Loftus" message.             # features/step_definitions/navigation_steps.rb:28
-    When I visit the user "40" page                         # features/step_definitions/navigation_steps.rb:4
-    Then page should have "Firstname39 Surname39" message.  # features/step_definitions/navigation_steps.rb:28
-    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
-    When I press "Edit" link                                # features/step_definitions/navigation_steps.rb:10
-    And I should be on user "40" edit page                  # features/step_definitions/navigation_steps.rb:42
-    And I fill in "user_grad_year" with "2001"              # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:20
-    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:36
-    Then page should have "2001" message.                   # features/step_definitions/navigation_steps.rb:28
+  Scenario: Login, end admin user and edit user 40          # features/admin_login.feature:5
+    Given I am on the login page                            # features/step_definitions/navigation_steps.rb:10
+    And I fill in "login-input" with "admin"                # features/step_definitions/form_steps.rb:7
+    And I fill in "password" with "taliesin"                # features/step_definitions/form_steps.rb:7
+    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:20
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:42
+    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:34
+    Then I press "profile" link                             # features/step_definitions/navigation_steps.rb:16
+    Then I should be on user "41" page                      # features/step_definitions/navigation_steps.rb:48
+    And page should have "Chris Loftus" message.            # features/step_definitions/navigation_steps.rb:34
+    When I press "Edit" link                                # features/step_definitions/navigation_steps.rb:16
+    And I should be on user "41" edit page                  # features/step_definitions/navigation_steps.rb:48
+    And I fill in "user_firstname" with "Tom"               # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:26
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:42
+    Then page should have "Tom Loftus" message.             # features/step_definitions/navigation_steps.rb:34
+    When I visit the user "40" page                         # features/step_definitions/navigation_steps.rb:10
+    Then page should have "Firstname39 Surname39" message.  # features/step_definitions/navigation_steps.rb:34
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:42
+    When I press "Edit" link                                # features/step_definitions/navigation_steps.rb:16
+    And I should be on user "40" edit page                  # features/step_definitions/navigation_steps.rb:48
+    And I fill in "user_grad_year" with "2001"              # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:26
+    And the status code should be "200"                     # features/step_definitions/navigation_steps.rb:42
+    Then page should have "2001" message.                   # features/step_definitions/navigation_steps.rb:34
 
 Feature: Create a new broardcast and check it is tweeted
 
   @javascript
-  Scenario:                                                                                                                                                                                # features/broadcast.feature:4
-    Given the "admin" with password "taliesin" is logged in                                                                                                                                # features/step_definitions/form_steps.rb:7
-    And I press "broadcasts" link                                                                                                                                                          # features/step_definitions/navigation_steps.rb:10
-    And I press "New broadcast" link                                                                                                                                                       # features/step_definitions/navigation_steps.rb:10
-    And only Twitter option is checked                                                                                                                                                     # features/step_definitions/broadcast_steps.rb:20
-    Then I enter broadcast "cucumber broadcast" with the current time                                                                                                                      # features/step_definitions/broadcast_steps.rb:15
+  Scenario: Tweet a broadcast and check that it has been tweeted. Delete that broadcast and check it has been deleted.                                                                     # features/broadcast.feature:4
+    Given the "admin" with password "taliesin" is logged in                                                                                                                                # features/step_definitions/form_steps.rb:13
+    And I press "broadcasts" link                                                                                                                                                          # features/step_definitions/navigation_steps.rb:16
+    And I press "New broadcast" link                                                                                                                                                       # features/step_definitions/navigation_steps.rb:16
+    And only Twitter option is checked                                                                                                                                                     # features/step_definitions/broadcast_steps.rb:37
+    Then I enter broadcast "cucumber broadcast" with the current time                                                                                                                      # features/step_definitions/broadcast_steps.rb:10
 feeds: {"alumni_email"=>"cs-alumni", "twitter"=>"1"}
-    And I press "Broadcast" button                                                                                                                                                         # features/step_definitions/navigation_steps.rb:20
-    Then check twitter updated with "cucumber broadcast"                                                                                                                                   # features/step_definitions/broadcast_steps.rb:5
-    And page should have "Broadcast was successfully saved and broadcast to all feeds" message.                                                                                            # features/step_definitions/navigation_steps.rb:28
-    Then I click show on the first broadcast                                                                                                                                               # features/step_definitions/broadcast_steps.rb:29
-    Then page should have "cucumber broadcast" message.                                                                                                                                    # features/step_definitions/navigation_steps.rb:28
-    When I press "Back" link                                                                                                                                                               # features/step_definitions/navigation_steps.rb:10
-    When I click delete for broadcast "1"                                                                                                                                                  # features/step_definitions/broadcast_steps.rb:35
-    Then page should have "No entries found" message.                                                                                                                                      # features/step_definitions/navigation_steps.rb:28
-    Then I press "broadcasts" link                                                                                                                                                         # features/step_definitions/navigation_steps.rb:10
-    And I press "New broadcast" link                                                                                                                                                       # features/step_definitions/navigation_steps.rb:10
-    And I fill in "broadcast_content" with "this post will be longer than a twitter feed post is allowed to be. It has been written for cucumber testing of CSA app. Should not be posted" # features/step_definitions/form_steps.rb:1
-feeds: {"alumni_email"=>"cs-alumni", "email"=>"1", "facebook"=>"1", "RSS"=>"1", "atom"=>"1", "twitter"=>"1"}
-    And I press "Broadcast" button                                                                                                                                                         # features/step_definitions/navigation_steps.rb:20
-    Then I should be on broadcasts page                                                                                                                                                    # features/step_definitions/navigation_steps.rb:42
-    And page should have "Broadcast was successfully saved, but problems broadcasting to one or more feeds" message.                                                                       # features/step_definitions/navigation_steps.rb:28
+    And I press "Broadcast" button                                                                                                                                                         # features/step_definitions/navigation_steps.rb:26
+    Then check twitter updated with "cucumber broadcast"                                                                                                                                   # features/step_definitions/broadcast_steps.rb:28
+      Failed assertion, no message given. (Minitest::Assertion)
+      ./features/step_definitions/broadcast_steps.rb:34:in `/^check twitter updated with "([^\"]*)"$/'
+      features/broadcast.feature:12:in `Then check twitter updated with "cucumber broadcast"'
+    And page should have "Broadcast was successfully saved and broadcast to all feeds" message.                                                                                            # features/step_definitions/navigation_steps.rb:34
+    Then I click show on the first broadcast                                                                                                                                               # features/step_definitions/broadcast_steps.rb:21
+    Then page should have "cucumber broadcast" message.                                                                                                                                    # features/step_definitions/navigation_steps.rb:34
+    When I press "Back" link                                                                                                                                                               # features/step_definitions/navigation_steps.rb:16
+    When I click delete for broadcast "1"                                                                                                                                                  # features/step_definitions/broadcast_steps.rb:15
+    Then page should have "No entries found" message.                                                                                                                                      # features/step_definitions/navigation_steps.rb:34
+    Then I press "broadcasts" link                                                                                                                                                         # features/step_definitions/navigation_steps.rb:16
+    And I press "New broadcast" link                                                                                                                                                       # features/step_definitions/navigation_steps.rb:16
+    And I fill in "broadcast_content" with "this post will be longer than a twitter feed post is allowed to be. It has been written for cucumber testing of CSA app. Should not be posted" # features/step_definitions/form_steps.rb:7
+    And I press "Broadcast" button                                                                                                                                                         # features/step_definitions/navigation_steps.rb:26
+    Then I should be on broadcasts page                                                                                                                                                    # features/step_definitions/navigation_steps.rb:48
+    And page should have "Broadcast was successfully saved, but problems broadcasting to one or more feeds" message.                                                                       # features/step_definitions/navigation_steps.rb:34
 
   Scenario: Adding multiple broadcasts                                                 # features/broadcast.feature:34
-    Given the "admin" with password "taliesin" is logged in                            # features/step_definitions/form_steps.rb:7
-    And I press "broadcasts" link                                                      # features/step_definitions/navigation_steps.rb:10
-    And I press "New broadcast" link                                                   # features/step_definitions/navigation_steps.rb:10
-    Then I enter broadcast "cucumber 1st of multiple broadcasts" with the current time # features/step_definitions/broadcast_steps.rb:15
+    Given the "admin" with password "taliesin" is logged in                            # features/step_definitions/form_steps.rb:13
+    And I press "broadcasts" link                                                      # features/step_definitions/navigation_steps.rb:16
+    And I press "New broadcast" link                                                   # features/step_definitions/navigation_steps.rb:16
+    Then I enter broadcast "cucumber 1st of multiple broadcasts" with the current time # features/step_definitions/broadcast_steps.rb:10
 feeds: {"alumni_email"=>"cs-alumni", "email"=>"1", "facebook"=>"1", "RSS"=>"1", "atom"=>"1", "twitter"=>"1"}
-    And I press "Broadcast" button                                                     # features/step_definitions/navigation_steps.rb:20
-    Then check twitter updated with "cucumber 1st of multiple broadcasts"              # features/step_definitions/broadcast_steps.rb:5
-    Then I press "New broadcast" link                                                  # features/step_definitions/navigation_steps.rb:10
-    Then I enter broadcast "cucumber 2nd of multiple broadcasts" with the current time # features/step_definitions/broadcast_steps.rb:15
+    And I press "Broadcast" button                                                     # features/step_definitions/navigation_steps.rb:26
+    Then check twitter updated with "cucumber 1st of multiple broadcasts"              # features/step_definitions/broadcast_steps.rb:28
+    Then I press "New broadcast" link                                                  # features/step_definitions/navigation_steps.rb:16
+    Then I enter broadcast "cucumber 2nd of multiple broadcasts" with the current time # features/step_definitions/broadcast_steps.rb:10
 feeds: {"alumni_email"=>"cs-alumni", "email"=>"1", "facebook"=>"1", "RSS"=>"1", "atom"=>"1", "twitter"=>"1"}
-    And I press "Broadcast" button                                                     # features/step_definitions/navigation_steps.rb:20
-    Then check twitter updated with "cucumber 2nd of multiple broadcasts"              # features/step_definitions/broadcast_steps.rb:5
-    Then I visit the broadcast "1" page                                                # features/step_definitions/navigation_steps.rb:4
-    And page should have "cucumber 1st of multiple broadcasts" message.                # features/step_definitions/navigation_steps.rb:28
-    Then I visit the broadcast "2" page                                                # features/step_definitions/navigation_steps.rb:4
-    And page should have "cucumber 2nd of multiple broadcasts" message.                # features/step_definitions/navigation_steps.rb:28
+    And I press "Broadcast" button                                                     # features/step_definitions/navigation_steps.rb:26
+    Then check twitter updated with "cucumber 2nd of multiple broadcasts"              # features/step_definitions/broadcast_steps.rb:28
+    Then I visit the broadcast "1" page                                                # features/step_definitions/navigation_steps.rb:10
+    And page should have "cucumber 1st of multiple broadcasts" message.                # features/step_definitions/navigation_steps.rb:34
+    Then I visit the broadcast "2" page                                                # features/step_definitions/navigation_steps.rb:10
+    And page should have "cucumber 2nd of multiple broadcasts" message.                # features/step_definitions/navigation_steps.rb:34
 
 Feature: The admin user can delete a user
 
   @javascript
-  Scenario:                                                 # features/delete_user.feature:4
-    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:7
-    And I press "users" link                                # features/step_definitions/navigation_steps.rb:10
-    When I click delete for user "1"                        # features/step_definitions/delete_user_steps.rb:1
-    Then the page should not contain "cwl0@aber.ac.uk"      # features/step_definitions/navigation_steps.rb:32
+  Scenario: Delete user 1 from the users page.              # features/delete_user.feature:4
+    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:13
+    And I press "users" link                                # features/step_definitions/navigation_steps.rb:16
+    When I click delete for user "1"                        # features/step_definitions/delete_user_steps.rb:7
+    Then the page should not contain "cwl0@aber.ac.uk"      # features/step_definitions/navigation_steps.rb:38
 
 Feature: Test that a new user can be created.
             Invalid option can not be entered into the new user form
 
-  Scenario Outline: New valid user. Also does the valid range check on the year.      # features/new_user.feature:5
-    Given the "admin" with password "taliesin" is logged in                           # features/step_definitions/form_steps.rb:7
-    And I press "users" link                                                          # features/step_definitions/navigation_steps.rb:10
-    And I press "New User" link                                                       # features/step_definitions/navigation_steps.rb:10
-    Then I fill in "user_firstname" with "Fred"                                       # features/step_definitions/form_steps.rb:1
-    And I fill in "user_surname" with "Blogs"                                         # features/step_definitions/form_steps.rb:1
-    And I fill in "user_phone" with "07576947302"                                     # features/step_definitions/form_steps.rb:1
-    And I fill in "user_grad_year" with "<grad_year>"                                 # features/step_definitions/form_steps.rb:1
-    And I fill in "user_email" with "fred@outlook.com"                                # features/step_definitions/form_steps.rb:1
-    And I fill in "user_user_detail_attributes_login" with "Fred"                     # features/step_definitions/form_steps.rb:1
-    And I fill in "user_user_detail_attributes_password" with "password"              # features/step_definitions/form_steps.rb:1
-    And I fill in "user_user_detail_attributes_password_confirmation" with "password" # features/step_definitions/form_steps.rb:1
-    And I press "Create" button                                                       # features/step_definitions/navigation_steps.rb:20
-    Then page should have "Account was successfully created" message.                 # features/step_definitions/navigation_steps.rb:28
-    When I visit the user "42" page                                                   # features/step_definitions/navigation_steps.rb:4
-    Then page should have "Fred Blogs" message.                                       # features/step_definitions/navigation_steps.rb:28
+  Scenario Outline: Enter a new valid user and check they are added. Also perform the valid range check on the graduation year. # features/new_user.feature:5
+    Given the "admin" with password "taliesin" is logged in                                                                     # features/step_definitions/form_steps.rb:13
+    And I press "users" link                                                                                                    # features/step_definitions/navigation_steps.rb:16
+    And I press "New User" link                                                                                                 # features/step_definitions/navigation_steps.rb:16
+    Then I fill in "user_firstname" with "Fred"                                                                                 # features/step_definitions/form_steps.rb:7
+    And I fill in "user_surname" with "Blogs"                                                                                   # features/step_definitions/form_steps.rb:7
+    And I fill in "user_phone" with "07576947302"                                                                               # features/step_definitions/form_steps.rb:7
+    And I fill in "user_grad_year" with "<grad_year>"                                                                           # features/step_definitions/form_steps.rb:7
+    And I fill in "user_email" with "fred@outlook.com"                                                                          # features/step_definitions/form_steps.rb:7
+    And I fill in "user_user_detail_attributes_login" with "Fred"                                                               # features/step_definitions/form_steps.rb:7
+    And I fill in "user_user_detail_attributes_password" with "password"                                                        # features/step_definitions/form_steps.rb:7
+    And I fill in "user_user_detail_attributes_password_confirmation" with "password"                                           # features/step_definitions/form_steps.rb:7
+    And I press "Create" button                                                                                                 # features/step_definitions/navigation_steps.rb:26
+    Then page should have "Account was successfully created" message.                                                           # features/step_definitions/navigation_steps.rb:34
+    When I visit the user "42" page                                                                                             # features/step_definitions/navigation_steps.rb:10
+    Then page should have "Fred Blogs" message.                                                                                 # features/step_definitions/navigation_steps.rb:34
 
     Examples: 
       | grad_year |
@@ -108,21 +110,21 @@ Feature: Test that a new user can be created.
       | 1970      |
       | 2000      |
 
-  Scenario Outline: checks that invalid options can't be entered into new user form                  # features/new_user.feature:31
-    Given the "admin" with password "taliesin" is logged in                                          # features/step_definitions/form_steps.rb:7
-    And I press "users" link                                                                         # features/step_definitions/navigation_steps.rb:10
-    And I press "New User" link                                                                      # features/step_definitions/navigation_steps.rb:10
-    Then I fill in "user_firstname" with "<firstname>"                                               # features/step_definitions/form_steps.rb:1
-    And I fill in "user_surname" with "<surname>"                                                    # features/step_definitions/form_steps.rb:1
-    And I fill in "user_phone" with "<phone>"                                                        # features/step_definitions/form_steps.rb:1
-    And I fill in "user_grad_year" with "<grad_year>"                                                # features/step_definitions/form_steps.rb:1
-    And I fill in "user_email" with "<email>"                                                        # features/step_definitions/form_steps.rb:1
-    And I fill in "user_user_detail_attributes_login" with "<login>"                                 # features/step_definitions/form_steps.rb:1
-    And I fill in "user_user_detail_attributes_password" with "<password>"                           # features/step_definitions/form_steps.rb:1
-    And I fill in "user_user_detail_attributes_password_confirmation" with "<password_confirmation>" # features/step_definitions/form_steps.rb:1
-    And I press "Create" button                                                                      # features/step_definitions/navigation_steps.rb:20
-    Then page should have "<message>" message.                                                       # features/step_definitions/navigation_steps.rb:28
-    Then I should be on the users page                                                               # features/step_definitions/navigation_steps.rb:42
+  Scenario Outline: Checks that invalid options can't be entered into new user form                  # features/new_user.feature:31
+    Given the "admin" with password "taliesin" is logged in                                          # features/step_definitions/form_steps.rb:13
+    And I press "users" link                                                                         # features/step_definitions/navigation_steps.rb:16
+    And I press "New User" link                                                                      # features/step_definitions/navigation_steps.rb:16
+    Then I fill in "user_firstname" with "<firstname>"                                               # features/step_definitions/form_steps.rb:7
+    And I fill in "user_surname" with "<surname>"                                                    # features/step_definitions/form_steps.rb:7
+    And I fill in "user_phone" with "<phone>"                                                        # features/step_definitions/form_steps.rb:7
+    And I fill in "user_grad_year" with "<grad_year>"                                                # features/step_definitions/form_steps.rb:7
+    And I fill in "user_email" with "<email>"                                                        # features/step_definitions/form_steps.rb:7
+    And I fill in "user_user_detail_attributes_login" with "<login>"                                 # features/step_definitions/form_steps.rb:7
+    And I fill in "user_user_detail_attributes_password" with "<password>"                           # features/step_definitions/form_steps.rb:7
+    And I fill in "user_user_detail_attributes_password_confirmation" with "<password_confirmation>" # features/step_definitions/form_steps.rb:7
+    And I press "Create" button                                                                      # features/step_definitions/navigation_steps.rb:26
+    Then page should have "<message>" message.                                                       # features/step_definitions/navigation_steps.rb:34
+    Then I should be on the users page                                                               # features/step_definitions/navigation_steps.rb:48
 
     Examples: 
       | firstname | surname | phone       | grad_year | email            | login | password | password_confirmation | message                                         |
@@ -139,25 +141,25 @@ Feature: Test that a new user can be created.
       | Fred      | Blogs   | 07576947302 | 1995      | fred@outlook.com | cwl2  | password | password              | User detail login has already been taken        |
       | Fred      | Blogs   | 07576947302 | 1995      | fred@outlook.com | fred  |          | password              | User detail password can't be blank             |
 
-  Scenario: visit none exisiting account get redirected to users page # features/new_user.feature:66
-    Given the "admin" with password "taliesin" is logged in           # features/step_definitions/form_steps.rb:7
-    And I visit the user "70" page                                    # features/step_definitions/navigation_steps.rb:4
-    Then I should be on the users page                                # features/step_definitions/navigation_steps.rb:42
-    And page should have "Account no longer exists" message.          # features/step_definitions/navigation_steps.rb:28
+  Scenario: Check that you get redirected to users page when you try to visit none exisiting account. # features/new_user.feature:66
+    Given the "admin" with password "taliesin" is logged in                                           # features/step_definitions/form_steps.rb:13
+    And I visit the user "70" page                                                                    # features/step_definitions/navigation_steps.rb:10
+    Then I should be on the users page                                                                # features/step_definitions/navigation_steps.rb:48
+    And page should have "Account no longer exists" message.                                          # features/step_definitions/navigation_steps.rb:34
 
 Feature: When no one is logged in
     the index page should be the only page avaliable.
 
-  Scenario: When I load website                                # features/not_logedin.feature:4
-    Given I am on the home page                                # features/step_definitions/navigation_steps.rb:4
-    Then page should have "Welcome to CS-Alumni News" message. # features/step_definitions/navigation_steps.rb:28
+  Scenario: Check home page is loaded when we first visit the website # features/not_logedin.feature:4
+    Given I am on the home page                                       # features/step_definitions/navigation_steps.rb:10
+    Then page should have "Welcome to CS-Alumni News" message.        # features/step_definitions/navigation_steps.rb:34
 
-  Scenario Outline: checks that invalid options can't be entered into login form # features/not_logedin.feature:8
-    Given I am on the login page                                                 # features/step_definitions/navigation_steps.rb:4
-    And I fill in "login-input" with "<role>"                                    # features/step_definitions/form_steps.rb:1
-    And I fill in "password" with "<access>"                                     # features/step_definitions/form_steps.rb:1
-    When I press "Login" within "#form_buttons" button                           # features/step_definitions/navigation_steps.rb:14
-    Then page should have "Couldn't log you in as" message.                      # features/step_definitions/navigation_steps.rb:28
+  Scenario Outline: Checks that invalid options can't be entered into login form # features/not_logedin.feature:8
+    Given I am on the login page                                                 # features/step_definitions/navigation_steps.rb:10
+    And I fill in "login-input" with "<role>"                                    # features/step_definitions/form_steps.rb:7
+    And I fill in "password" with "<access>"                                     # features/step_definitions/form_steps.rb:7
+    When I press "Login" within "#form_buttons" button                           # features/step_definitions/navigation_steps.rb:20
+    Then page should have "Couldn't log you in as" message.                      # features/step_definitions/navigation_steps.rb:34
 
     Examples: 
       | role  | access   |
@@ -167,122 +169,125 @@ Feature: When no one is logged in
       | admin | invalid  |
 
   Scenario: Redirects to login page when try to access any page (that isn't the home page) # features/not_logedin.feature:24
-    When I visit the broadcasts page                                                       # features/step_definitions/navigation_steps.rb:4
-    Then I get redirected to the login page                                                # features/step_definitions/user_access_steps.rb:12
-    And page should have "Please log in" message.                                          # features/step_definitions/navigation_steps.rb:28
-    When I visit the user "40" page                                                        # features/step_definitions/navigation_steps.rb:4
-    Then I get redirected to the login page                                                # features/step_definitions/user_access_steps.rb:12
-    And page should have "Please log in" message.                                          # features/step_definitions/navigation_steps.rb:28
+    When I visit the broadcasts page                                                       # features/step_definitions/navigation_steps.rb:10
+    Then I get redirected to the login page                                                # features/step_definitions/user_access_steps.rb:17
+    And page should have "Please log in" message.                                          # features/step_definitions/navigation_steps.rb:34
+    When I visit the user "40" page                                                        # features/step_definitions/navigation_steps.rb:10
+    Then I get redirected to the login page                                                # features/step_definitions/user_access_steps.rb:17
+    And page should have "Please log in" message.                                          # features/step_definitions/navigation_steps.rb:34
 
-  Scenario: Able to log in and log out                      # features/not_logedin.feature:35
-    When I am on the login page                             # features/step_definitions/navigation_steps.rb:4
-    And I fill in "login-input" with "admin"                # features/step_definitions/form_steps.rb:1
-    And I fill in "password" with "taliesin"                # features/step_definitions/form_steps.rb:1
-    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:14
-    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:28
-    When I press "Logout" button                            # features/step_definitions/navigation_steps.rb:20
-    Then I should be on home page                           # features/step_definitions/navigation_steps.rb:42
-    And "profile" tab should not be avaliable               # features/step_definitions/user_access_steps.rb:7
+  Scenario: Checks a user is able to log in and log out     # features/not_logedin.feature:35
+    When I am on the login page                             # features/step_definitions/navigation_steps.rb:10
+    And I fill in "login-input" with "admin"                # features/step_definitions/form_steps.rb:7
+    And I fill in "password" with "taliesin"                # features/step_definitions/form_steps.rb:7
+    When I press "Login" within "#form_buttons" button      # features/step_definitions/navigation_steps.rb:20
+    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:34
+    When I press "Logout" button                            # features/step_definitions/navigation_steps.rb:26
+    Then I should be on home page                           # features/step_definitions/navigation_steps.rb:48
+    And "profile" tab should not be avaliable               # features/step_definitions/user_access_steps.rb:13
 
-Feature: Can search for and select a user.
+Feature: Can search via firstname and surname, and select that user.
 
   @javascript
-  Scenario:                                                                # features/search_users.feature:4
-    Given the "admin" with password "taliesin" is logged in                # features/step_definitions/form_steps.rb:7
-    And I press "users" link                                               # features/step_definitions/navigation_steps.rb:10
+  Scenario: Search for and select the user Chris Loftus. Search for a user by surname and by firstname. # features/search_users.feature:4
+    Given the "admin" with password "taliesin" is logged in                                             # features/step_definitions/form_steps.rb:13
+    And I press "users" link                                                                            # features/step_definitions/navigation_steps.rb:16
 search conditions: ["(LOWER(firstname) LIKE :word1 OR LOWER(surname) LIKE :word1 OR LOWER(grad_year) LIKE :word1 OR LOWER(phone) LIKE :word1 OR LOWER(email) LIKE :word1)", {:word1=>"%lo%"}]
-    When I type "Lo" into the search field "q" and I choose "Chris Loftus" # features/step_definitions/search_users_steps.rb:3
-    Then page should have "622422" message.                                # features/step_definitions/navigation_steps.rb:28
+    When I type "Lo" into the search field "q" and I choose "Chris Loftus"                              # features/step_definitions/search_users_steps.rb:9
+    Then page should have "622422" message.                                                             # features/step_definitions/navigation_steps.rb:34
 search conditions: ["(LOWER(firstname) LIKE :word1)", {:word1=>"%lo%"}]
-    When I check "firstname"                                               # features/step_definitions/form_steps.rb:18
-    And I fill in "q" with "Firstname"                                     # features/step_definitions/form_steps.rb:1
+    When I check "firstname"                                                                            # features/step_definitions/form_steps.rb:23
+    And I fill in "q" with "Firstname"                                                                  # features/step_definitions/form_steps.rb:7
 search conditions: ["(LOWER(firstname) LIKE :word1)", {:word1=>"%firstname%"}]
-    And I press "Search" button                                            # features/step_definitions/navigation_steps.rb:20
-    Then the page should not contain "Chris"                               # features/step_definitions/navigation_steps.rb:32
-    And page should have "Firstname1" message.                             # features/step_definitions/navigation_steps.rb:28
-    And page should have "Firstname10" message.                            # features/step_definitions/navigation_steps.rb:28
-    When I check "surname"                                                 # features/step_definitions/form_steps.rb:18
-    And I uncheck "firstname"                                              # features/step_definitions/form_steps.rb:22
-    And I fill in "q" with "Surname"                                       # features/step_definitions/form_steps.rb:1
+    And I press "Search" button                                                                         # features/step_definitions/navigation_steps.rb:26
+    Then the page should not contain "Chris"                                                            # features/step_definitions/navigation_steps.rb:38
+    And page should have "Firstname1" message.                                                          # features/step_definitions/navigation_steps.rb:34
+    And page should have "Firstname10" message.                                                         # features/step_definitions/navigation_steps.rb:34
+    When I check "surname"                                                                              # features/step_definitions/form_steps.rb:23
+    And I uncheck "firstname"                                                                           # features/step_definitions/form_steps.rb:27
+    And I fill in "q" with "Surname"                                                                    # features/step_definitions/form_steps.rb:7
 search conditions: ["(LOWER(firstname) LIKE :word1 OR LOWER(surname) LIKE :word1 OR LOWER(grad_year) LIKE :word1 OR LOWER(phone) LIKE :word1 OR LOWER(email) LIKE :word1)", {:word1=>"%surname%"}]
-    And I press "Search" button                                            # features/step_definitions/navigation_steps.rb:20
-    Then the page should not contain "Chris"                               # features/step_definitions/navigation_steps.rb:32
-    And page should have "Firstname1" message.                             # features/step_definitions/navigation_steps.rb:28
-    And page should have "Firstname10" message.                            # features/step_definitions/navigation_steps.rb:28
-    When I check "surname"                                                 # features/step_definitions/form_steps.rb:18
-    And I check "firstname"                                                # features/step_definitions/form_steps.rb:18
-    And I fill in "q" with "Surname"                                       # features/step_definitions/form_steps.rb:1
+    And I press "Search" button                                                                         # features/step_definitions/navigation_steps.rb:26
+    Then the page should not contain "Chris"                                                            # features/step_definitions/navigation_steps.rb:38
+    And page should have "Firstname1" message.                                                          # features/step_definitions/navigation_steps.rb:34
+    And page should have "Firstname10" message.                                                         # features/step_definitions/navigation_steps.rb:34
+    When I check "surname"                                                                              # features/step_definitions/form_steps.rb:23
+    And I check "firstname"                                                                             # features/step_definitions/form_steps.rb:23
+    And I fill in "q" with "Surname"                                                                    # features/step_definitions/form_steps.rb:7
 search conditions: ["(LOWER(firstname) LIKE :word1 OR LOWER(surname) LIKE :word1 OR LOWER(grad_year) LIKE :word1 OR LOWER(phone) LIKE :word1 OR LOWER(email) LIKE :word1)", {:word1=>"%surname%"}]
-    And I press "Search" button                                            # features/step_definitions/navigation_steps.rb:20
-    Then the page should not contain "Chris"                               # features/step_definitions/navigation_steps.rb:32
-    And page should have "Firstname1" message.                             # features/step_definitions/navigation_steps.rb:28
-    And page should have "Firstname10" message.                            # features/step_definitions/navigation_steps.rb:28
-    When I fill in "q" with "None"                                         # features/step_definitions/form_steps.rb:1
+    And I press "Search" button                                                                         # features/step_definitions/navigation_steps.rb:26
+    Then the page should not contain "Chris"                                                            # features/step_definitions/navigation_steps.rb:38
+    And page should have "Firstname1" message.                                                          # features/step_definitions/navigation_steps.rb:34
+    And page should have "Firstname10" message.                                                         # features/step_definitions/navigation_steps.rb:34
+    When I fill in "q" with "None"                                                                      # features/step_definitions/form_steps.rb:7
 search conditions: ["(LOWER(firstname) LIKE :word1 OR LOWER(surname) LIKE :word1 OR LOWER(grad_year) LIKE :word1 OR LOWER(phone) LIKE :word1 OR LOWER(email) LIKE :word1)", {:word1=>"%none%"}]
-    And I press "Search" button                                            # features/step_definitions/navigation_steps.rb:20
-    And page should have "No entries found" message.                       # features/step_definitions/navigation_steps.rb:28
+    And I press "Search" button                                                                         # features/step_definitions/navigation_steps.rb:26
+    And page should have "No entries found" message.                                                    # features/step_definitions/navigation_steps.rb:34
 
 Feature: When invalid data is enetered into the user update form
     a user freindly error message is displayed.
 
-  Scenario: Go to the edit page                                                      # features/update_form.feature:4
-    Given the "admin" with password "taliesin" is logged in                          # features/step_definitions/form_steps.rb:7
-    And I press "profile" link                                                       # features/step_definitions/navigation_steps.rb:10
-    And I press "Edit" link                                                          # features/step_definitions/navigation_steps.rb:10
-    When I fill in "user_firstname" with ""                                          # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:20
-    Then page should have "Firstname can't be blank" message.                        # features/step_definitions/navigation_steps.rb:28
-    When I fill in "user_firstname" with "Tom"                                       # features/step_definitions/form_steps.rb:1
-    And I fill in "user_surname" with ""                                             # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:20
-    Then page should have "Surname can't be blank" message.                          # features/step_definitions/navigation_steps.rb:28
-    When I fill in "user_surname" with "Bloggs"                                      # features/step_definitions/form_steps.rb:1
-    And I fill in "user_email" with "aaa@aber"                                       # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:20
-    Then page should have "Email Bad email address format" message.                  # features/step_definitions/navigation_steps.rb:28
-    When I fill in "user_email" with "aaa@aber.com"                                  # features/step_definitions/form_steps.rb:1
-    And I fill in "user_grad_year" with "1969"                                       # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:20
-    Then page should have "Grad year must be greater than or equal to 1970" message. # features/step_definitions/navigation_steps.rb:28
-    When I fill in "user_grad_year" with "2015"                                      # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:20
-    Then page should have "Grad year must be less than or equal to 2014" message.    # features/step_definitions/navigation_steps.rb:28
-    When I fill in "user_grad_year" with "2013"                                      # features/step_definitions/form_steps.rb:1
-    And I press "Update" button                                                      # features/step_definitions/navigation_steps.rb:20
-    Then I should be on user "41" page                                               # features/step_definitions/navigation_steps.rb:42
+  Scenario: Update the admin users details from the edit page and check that helpful error message is displayed. # features/update_form.feature:4
+    Given the "admin" with password "taliesin" is logged in                                                      # features/step_definitions/form_steps.rb:13
+    And I press "profile" link                                                                                   # features/step_definitions/navigation_steps.rb:16
+    And I press "Edit" link                                                                                      # features/step_definitions/navigation_steps.rb:16
+    When I fill in "user_firstname" with ""                                                                      # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                                                                                  # features/step_definitions/navigation_steps.rb:26
+    Then page should have "Firstname can't be blank" message.                                                    # features/step_definitions/navigation_steps.rb:34
+    When I fill in "user_firstname" with "Tom"                                                                   # features/step_definitions/form_steps.rb:7
+    And I fill in "user_surname" with ""                                                                         # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                                                                                  # features/step_definitions/navigation_steps.rb:26
+    Then page should have "Surname can't be blank" message.                                                      # features/step_definitions/navigation_steps.rb:34
+    When I fill in "user_surname" with "Bloggs"                                                                  # features/step_definitions/form_steps.rb:7
+    And I fill in "user_email" with "aaa@aber"                                                                   # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                                                                                  # features/step_definitions/navigation_steps.rb:26
+    Then page should have "Email Bad email address format" message.                                              # features/step_definitions/navigation_steps.rb:34
+    When I fill in "user_email" with "aaa@aber.com"                                                              # features/step_definitions/form_steps.rb:7
+    And I fill in "user_grad_year" with "1969"                                                                   # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                                                                                  # features/step_definitions/navigation_steps.rb:26
+    Then page should have "Grad year must be greater than or equal to 1970" message.                             # features/step_definitions/navigation_steps.rb:34
+    When I fill in "user_grad_year" with "2015"                                                                  # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                                                                                  # features/step_definitions/navigation_steps.rb:26
+    Then page should have "Grad year must be less than or equal to 2014" message.                                # features/step_definitions/navigation_steps.rb:34
+    When I fill in "user_grad_year" with "2013"                                                                  # features/step_definitions/form_steps.rb:7
+    And I press "Update" button                                                                                  # features/step_definitions/navigation_steps.rb:26
+    Then I should be on user "41" page                                                                           # features/step_definitions/navigation_steps.rb:48
 
 Feature: Check that the user image is uploaded and displayed correctly.
 
   @javascript
-  Scenario:                                                 # features/user_image.feature:4
-    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:7
-    Then I press "profile" link                             # features/step_definitions/navigation_steps.rb:10
-    And I press "Edit" link                                 # features/step_definitions/navigation_steps.rb:10
-    And I "image_file" "/images/dragonFly.jpg"              # features/step_definitions/user_image_steps.rb:1
-    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:20
-    And save the page                                       # features/step_definitions/navigation_steps.rb:49
-    Then I have "dragonFly.jpg" image                       # features/step_definitions/user_image_steps.rb:6
+  Scenario: Upload a new photo to the admin user.           # features/user_image.feature:4
+    Given the "admin" with password "taliesin" is logged in # features/step_definitions/form_steps.rb:13
+    Then I press "profile" link                             # features/step_definitions/navigation_steps.rb:16
+    And I press "Edit" link                                 # features/step_definitions/navigation_steps.rb:16
+    And I "image_file" "/images/dragonFly.jpg"              # features/step_definitions/user_image_steps.rb:7
+    And I press "Update" button                             # features/step_definitions/navigation_steps.rb:26
+    And save the page                                       # features/step_definitions/navigation_steps.rb:55
+    Then I have "dragonFly.jpg" image                       # features/step_definitions/user_image_steps.rb:12
 
 Feature: When a none admin user is logged in
     they should not have permission to access broadcast or users page
     but should have permission to view and edit there own profile.
 
-  Scenario:                                                 # features/user_login.feature:5
-    Given the "cwl2" with password "secret" is logged in    # features/step_definitions/form_steps.rb:7
-    Then page should have "Logged in successfully" message. # features/step_definitions/navigation_steps.rb:28
-    Then "profile" tab should be avaliable                  # features/step_definitions/user_access_steps.rb:3
-    Then save the page                                      # features/step_definitions/navigation_steps.rb:49
-    And "broadcast" tab should not be avaliable             # features/step_definitions/user_access_steps.rb:7
-    When I visit the broadcasts page                        # features/step_definitions/navigation_steps.rb:4
-    Then I get redirected to the home page                  # features/step_definitions/user_access_steps.rb:12
-    When I visit the users page                             # features/step_definitions/navigation_steps.rb:4
-    Then I get redirected to the home page                  # features/step_definitions/user_access_steps.rb:12
-    When I visit the user "40" page                         # features/step_definitions/navigation_steps.rb:4
-    Then I get redirected to the home page                  # features/step_definitions/user_access_steps.rb:12
-    When I visit the user "40" edit page                    # features/step_definitions/navigation_steps.rb:4
-    Then I get redirected to the home page                  # features/step_definitions/user_access_steps.rb:12
+  Scenario: Login as a user (that isn't admin) and check that they are unable to access the broadcast or users page. # features/user_login.feature:5
+    Given the "cwl2" with password "secret" is logged in                                                             # features/step_definitions/form_steps.rb:13
+    Then page should have "Logged in successfully" message.                                                          # features/step_definitions/navigation_steps.rb:34
+    Then "profile" tab should be avaliable                                                                           # features/step_definitions/user_access_steps.rb:9
+    Then save the page                                                                                               # features/step_definitions/navigation_steps.rb:55
+    And "broadcast" tab should not be avaliable                                                                      # features/step_definitions/user_access_steps.rb:13
+    When I visit the broadcasts page                                                                                 # features/step_definitions/navigation_steps.rb:10
+    Then I get redirected to the home page                                                                           # features/step_definitions/user_access_steps.rb:17
+    When I visit the users page                                                                                      # features/step_definitions/navigation_steps.rb:10
+    Then I get redirected to the home page                                                                           # features/step_definitions/user_access_steps.rb:17
+    When I visit the user "40" page                                                                                  # features/step_definitions/navigation_steps.rb:10
+    Then I get redirected to the home page                                                                           # features/step_definitions/user_access_steps.rb:17
+    When I visit the user "40" edit page                                                                             # features/step_definitions/navigation_steps.rb:10
+    Then I get redirected to the home page                                                                           # features/step_definitions/user_access_steps.rb:17
 
-31 scenarios (31 passed)
-385 steps (385 passed)
-1m7.531s
-Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 364 / 416 LOC (87.5%) covered.
+Failing Scenarios:
+cucumber features/broadcast.feature:4 # Scenario: Tweet a broadcast and check that it has been tweeted. Delete that broadcast and check it has been deleted.
+
+31 scenarios (1 failed, 30 passed)
+385 steps (1 failed, 12 skipped, 372 passed)
+1m29.219s
+Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 355 / 416 LOC (85.34%) covered.

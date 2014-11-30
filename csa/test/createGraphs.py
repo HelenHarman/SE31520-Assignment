@@ -18,7 +18,7 @@ from matplotlib.dates import DayLocator, HourLocator, DateFormatter, drange
 #-------------------------------------------------------------------------------------
 
 ##
-#
+# Creates and displays the graphs of the test results and the coverage.
 def createGraphs(DATABASE_PATHNAME):
     # create and display a graph of how the results have changed over time.
     # get all the results from the database

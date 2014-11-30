@@ -1,3 +1,9 @@
+## navigation_steps.rb
+# Contains the steps for navigating around the CSA application
+#
+# @author Helen Harman
+# @created November 2014
+
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
 # used for visiting a specific page
@@ -19,7 +25,7 @@ end
 
 When /^I press "([^\"]*)" button$/ do |button|
     click_button(button)
-    sleep(1)
+    sleep(1) # had issues with page being slow to load.
 end
 
 
@@ -49,16 +55,3 @@ end
 Then(/^save the page$/) do
     save_and_open_page
 end
-
-
-#Then(/^I should be on user "([0-9]+)" page$/) do |user_id|
-#   assert page.current_path == user_path(:id => user_id)
-#end
-
-#When(/^I should be on user "([0-9]+)" edit page$/) do |user_id|
-#    assert page.current_path == edit_user_path(:id => user_id)
-#end
-
-#Then(/^I should be on rm (.+)$/) do |page_name| #TODO rm rm
-#    assert page.current_path == path_to(page_name)
-#end

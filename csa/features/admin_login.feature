@@ -1,8 +1,8 @@
 Feature: When admin is loged in
     the correct tabs are avaliable in the index page.
-    The admin is allow to edit there details and the details of other users.
+    The admin is allow to edit their details and the details of other users.
 
-Scenario: When the admin is logged in
+Scenario: Login, end admin user and edit user 40
     Given I am on the login page
     And I fill in "login-input" with "admin"
     And I fill in "password" with "taliesin"
