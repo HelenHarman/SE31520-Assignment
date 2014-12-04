@@ -41,9 +41,6 @@ Feature: Create a new broardcast and check it is tweeted
 feeds: {"alumni_email"=>"cs-alumni", "twitter"=>"1"}
     And I press "Broadcast" button                                                                                                                                                         # features/step_definitions/navigation_steps.rb:26
     Then check twitter updated with "cucumber broadcast"                                                                                                                                   # features/step_definitions/broadcast_steps.rb:28
-      Failed assertion, no message given. (Minitest::Assertion)
-      ./features/step_definitions/broadcast_steps.rb:34:in `/^check twitter updated with "([^\"]*)"$/'
-      features/broadcast.feature:12:in `Then check twitter updated with "cucumber broadcast"'
     And page should have "Broadcast was successfully saved and broadcast to all feeds" message.                                                                                            # features/step_definitions/navigation_steps.rb:34
     Then I click show on the first broadcast                                                                                                                                               # features/step_definitions/broadcast_steps.rb:21
     Then page should have "cucumber broadcast" message.                                                                                                                                    # features/step_definitions/navigation_steps.rb:34
@@ -53,6 +50,7 @@ feeds: {"alumni_email"=>"cs-alumni", "twitter"=>"1"}
     Then I press "broadcasts" link                                                                                                                                                         # features/step_definitions/navigation_steps.rb:16
     And I press "New broadcast" link                                                                                                                                                       # features/step_definitions/navigation_steps.rb:16
     And I fill in "broadcast_content" with "this post will be longer than a twitter feed post is allowed to be. It has been written for cucumber testing of CSA app. Should not be posted" # features/step_definitions/form_steps.rb:7
+feeds: {"alumni_email"=>"cs-alumni", "email"=>"1", "facebook"=>"1", "RSS"=>"1", "atom"=>"1", "twitter"=>"1"}
     And I press "Broadcast" button                                                                                                                                                         # features/step_definitions/navigation_steps.rb:26
     Then I should be on broadcasts page                                                                                                                                                    # features/step_definitions/navigation_steps.rb:48
     And page should have "Broadcast was successfully saved, but problems broadcasting to one or more feeds" message.                                                                       # features/step_definitions/navigation_steps.rb:34
@@ -284,10 +282,7 @@ Feature: When a none admin user is logged in
     When I visit the user "40" edit page                                                                             # features/step_definitions/navigation_steps.rb:10
     Then I get redirected to the home page                                                                           # features/step_definitions/user_access_steps.rb:17
 
-Failing Scenarios:
-cucumber features/broadcast.feature:4 # Scenario: Tweet a broadcast and check that it has been tweeted. Delete that broadcast and check it has been deleted.
-
-31 scenarios (1 failed, 30 passed)
-385 steps (1 failed, 12 skipped, 372 passed)
-1m29.219s
-Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 355 / 416 LOC (85.34%) covered.
+31 scenarios (31 passed)
+385 steps (385 passed)
+1m5.908s
+Coverage report generated for Cucumber Features to /Users/helen/Documents/UniWork/SE31520/SE31520/csa/coverage. 364 / 416 LOC (87.5%) covered.

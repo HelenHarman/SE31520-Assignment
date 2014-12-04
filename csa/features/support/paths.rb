@@ -1,4 +1,9 @@
+## paths.rb
+#
+# Code modified from : http://loudcoding.com/posts/quick-tutorial-starting-with-cucumber-and-capybara-bdd-on-rails-project/
+
 module NavigationHelpers
+    ##
     # used for cucumber testing, to check what page we are on, and to visit a page
     def path_to(page_name)
         case page_name
@@ -8,6 +13,7 @@ module NavigationHelpers
                 root_path
             when /home\s?page/
                 home_path
+                
             # handle new session page request
             when /the login\s?page/
                 new_session_path

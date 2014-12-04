@@ -33,13 +33,15 @@ def saveResultsToDB():
         # get the number of scenarios ran
         result = re.match('(?P<num>^[0-9]+) scenarios', line) #example line to find : "2 scenarios (2 passed)"
         if result:
+            print line
             num_scenarios = result.group('num')
             # get the number of scenarios passed
             scenarios_passed = getNumberOfPassesFromString(line)
-        
+            
             # get the number of steps
             result = re.match('(?P<num>^[0-9]+) steps', lines[count])
             if result :
+                print lines[count]
                 num_steps = result.group('num')
                 # get the number of steps passed
                 steps_passed = getNumberOfPassesFromString(lines[count])
