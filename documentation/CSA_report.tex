@@ -20,10 +20,9 @@
 
 \pagebreak 
 \section{Introduction}
-This document describes the workings of the CSA application. A detailed test plan for doing performing cucumber testing on the application has been given.
+This document describes the workings of the CSA application that has been provided to us. A detailed test plan for doing performing cucumber testing on the application has been given.
 \section{Requirements Analysis}
-I have not changed the functionality of the CSA application, so see Loftus \cite[5]{design} for a class diagram for CSA.
-
+This section contains a description of the functionality of the CSA application, without any implementation details. 
 \subsection{Use Case Diagrams}
 I have created several use case diagrams to show the current functionality that has been implemented within the CSA application. 
 \subsubsection{Broadcasts}
@@ -37,14 +36,11 @@ I have created several use case diagrams to show the current functionality that 
 
 An admin user should be able to :
 \begin{itemize}
-\item Create any number of broadcasts. This will be broadcast to multiple feeds, including Email and Twitter. A user will then receive the broadcast in an email or view the tweet. The admin will choose which feeds they wish to broadcast too.
-	\begin{itemize}
-	\item A user will receive the broadcast email and be able to view the Tweet. 
-	\end{itemize}
-\item An admin should be able to view the list of broadcast, and view a particular broadcast's content.
+\item Create any number of broadcasts. This includes broadcast to multiple feeds, including Email and Twitter. A user will then receive the broadcast in an email or/and be able to view the tweet. The admin will choose which feeds they wish to broadcast too.
+\item An admin should be able to view the list of broadcasts, and view a particular broadcast's content.
 \item An admin should be able to delete a broadcast.
 \end{itemize}
-The admin will interact with the view part of the application, and any other the above actions will update the model with the correct data.
+The admin will interact with the view part of the application, the POST/DELETE/UPDATE action described above will update the model with the correct data.
 
 \subsubsection{User}
 \begin{figure}[H]
@@ -56,11 +52,12 @@ The admin will interact with the view part of the application, and any other the
 \end{figure}
 
 \begin{itemize}
-\item The admin should be able to create a user, using a form. Doing this will create a record in the UserDetails model and a if an image is being used a record to the image model will be added. 
+\item The admin should be able to create a user, using a web form. Doing this will create a record in the UserDetails model and an image record if an image has been uploaded. 
 	\begin{itemize}
 	\item A user will then be able to login to the application using the UserDetails the admin has entered.
 	\end{itemize} 
-\item An admin should be able to edit any of the users within the application using the web page. A user should only be able to edit their own account.
+\item An admin should be able to edit any of the users within the application using the web page. 
+\item A user should only be able to edit their own account.
 \item An admin should be able to delete a user.
 \end{itemize}
 
@@ -76,6 +73,7 @@ The admin will interact with the view part of the application, and any other the
 The state diagram in figure~\ref{fig:stateDiagram} shows the state of the system when a user accesses the CSA application, requests a page and logs into the application. 
 
 \section{Design}
+I have not changed the functionality of the CSA application as I choose to do the cucumber testing, below I have provided a description of Loftus \cite[5]{design} class diagram. 
 \subsection{Class Diagram}
 \begin{figure}[H]
 \begin{center}
@@ -89,14 +87,14 @@ When a client/browser sends a request to the CSA application, the request gets s
 \item In the case of the Home page, then HomeController gets run and the home view gets sent as a HTTP response to the client. 
 \item When a client requests to be logged in (or is logged in) their request gets sent to the SessionsController. The userDetails in the session parameters are compared to those in the UserDetail model. If the login details are correct then the sessions view is given as a HTTP response to the client/browser. 
 \item When a users page is requested the UsersController accesses the Image and User model to get the data for the user(s), the users view is then sent to the browser as a HTTP response. 
-\item When a broadcast is posted to the BroadcastsController a record in the broadcast model is added. BroadcastServices is used to process broadcasting the broadcast to the different feeds. A feed record is created for each type of feed the broadcast is being sent to. 
+\item When a broadcast is posted to the BroadcastsController a record in the broadcast model is added. BroadcastServices is used to handle broadcasting the broadcast to the different feeds. A Feed record is created for each type of feed the broadcast is being sent to. 
 	\begin{itemize}
-	\item When an email being created the content of the email is entered into the news\_broadcast and SMTP is used to send the email to the users.
+	\item When an email is being created the email content is entered into the news\_broadcast and SMTP is used to send the email to the users.
 	\end{itemize}
 	
 \end{itemize}
 \section{Test Strategy}
-For the addition I made to the application I decided to add cucumber tests using capybara and selenium. This way I could see what parts of the application are yet to be implemented, what improves could be made. Have a full set of tests before changing an application is important, as you do not want to break any of the current system. 
+For the addition I made to the application I decided to add cucumber tests using capybara and selenium. This way I could see what parts of the application are yet to be implemented, and what improves could be made. Having a full set of tests before changing an application is important, as you do not want to break any of the current system. 
 
 \includepdf[pages={1-3}]{include/testTable.pdf} 
 
@@ -120,6 +118,8 @@ The sequence diagram in figure~\ref{fig:sequenceDiagram} shows how this script w
 \label{fig:sequenceDiagram}
 \end{center}
 \end{figure}
+
+\subsection{Helper Files}
 I also created the following support files:
 \begin{itemize}
 \item env.rb
@@ -173,10 +173,27 @@ The output shown in figure~\ref{fig:coverageOutput} is produced by the simpleCov
 
 \section{Critical Evaluation}
 
-Before the start of this module I had never had any experience with ruby or much experience with different web technologies. I took me awhile to learn these new technologies and to find my way around the CSA application. I also had to learn about cucumber testing, and found it strange to work in a behaviour driven way. Once I had gotten use to writing features then developing the tests became a lot quicker. Learning the technologies meant that I spent a lot longer on the assignment than the recommended 50 hours.\\
+Before the start of this module I had no experience with using ruby, and did not have much experience with different web technologies. I took me awhile to learn these new technologies and to find my way around the CSA application. I also had to learn about cucumber testing, and found it strange to work in a behaviour driven way. Once I had gotten use to writing features, developing the tests became a lot quicker. Learning the technologies meant that I spent a lot longer on the assignment than the recommended 50 hours.\\
 
 I have had some past experience with python but had not used the matpotlib before so wanted to gain experience of using this module. Creating the graphs gave me this experience. The Python scripts could then easily be started from a continuous integration sever like Jenkins/Hudson.\\
 
+
+\subsection{Technologies Used}
+\begin{itemize}
+\item Ruby 2.1.3 - Programming Language
+\item Rails 4.1.5 - Framework
+\item SQLite3 - Database (including the test result database)
+\item Cucumber - Testing gem using description of the behaviour of the application
+\item Capybara-webkit - used to automate the cucumber tests.
+\item Selenium-webdriver
+\item JSON - used to check that a tweet has been created.
+\item Javascript and AJAX - Used when performing the search for a user.
+\item SimpleCov - Produces the HTML coverage, for running the cucumber tests.
+\item Python - Create the graphs for the test results. matpotlib has been used.
+\item SQLite3 - Used in setting up the test results database and when using the test database.
+\end{itemize}
+
+\subsection{Mark}
 I would give the following marks to each section:
 \begin{itemize}
 \item Successfully running the provided CSA prototype : 4\%
@@ -204,25 +221,8 @@ I would give the following marks to each section:
 	\item Lots of details.
 	\end{itemize}
 With a total mark of 74\%
-
 \end{itemize}
 
-
-
-\subsection{Technologies Used}
-\begin{itemize}
-\item Ruby 2.1.3 - Programming Language
-\item Rails 4.1.5 - Framework
-\item SQLite3 - Database (including the test result database)
-\item Cucumber - Testing gem using description of the behaviour of the application
-\item Capybara-webkit - used to automate the cucumber tests.
-\item Selenium-webdriver
-\item JSON - used to check that a tweet has been created.
-\item Javascript and AJAX - Used when performing the search for a user.
-\item SimpleCov - Produces the HTML coverage, for running the cucumber tests.
-\item Python - Create the graphs for the test results. matpotlib has been used.
-\item SQLite3 - Used in setting up the test results database and when using the test database.
-\end{itemize}
 
 \subsection{Problems Encounter}
 \begin{enumerate}
@@ -253,7 +253,7 @@ Additional Gems and rails related attributions:
 \item Cucumber
 \begin{itemize}
 \item The instructions I used for using cucumber can be found at http://cukes.info/
-\item To learn how to use cucumber I used the following tutorial: http://loudcoding.com/posts/quick-tutorial-starting-with-cucumber-and-capybara-bdd-on-rails-project/. Using paths.rb file was suggested by this tutorial.
+\item To learn how to use cucumber I used the following tutorial: http://loudcoding.com/posts/quick-tutorial-starting-with-cucumber-and-capybara-bdd-on-rails-project/. Using a paths.rb support file was suggested by this tutorial.
 \end{itemize}
 \item I used Capybara API (http://www.rubydoc.info/github/jnicklas/capybara/Capybara/) while writing the steps.
 \item Learnt the ruby regular expressions from http://www.agileforall.com/2010/07/just-enough-regular-expressions-for-cucumber/

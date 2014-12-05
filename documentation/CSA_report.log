@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.1.12)  4 DEC 2014 19:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.1.12)  5 DEC 2014 17:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -574,29 +574,29 @@ report.toc)
 File: include/broadcasts_Use_Case.png Graphic file (type png)
 
 <use include/broadcasts_Use_Case.png>
-Package pdftex.def Info: include/broadcasts_Use_Case.png used on input line 32.
+Package pdftex.def Info: include/broadcasts_Use_Case.png used on input line 31.
 
 (pdftex.def)             Requested size: 489.33191pt x 255.95822pt.
 
-Overfull \hbox (34.0878pt too wide) in paragraph at lines 32--33
+Overfull \hbox (34.0878pt too wide) in paragraph at lines 31--32
  [] 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 40.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 39.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
 
 <include/User_Use_Case.png, id=15, 1681.28125pt x 828.09375pt>
 File: include/User_Use_Case.png Graphic file (type png)
 
 <use include/User_Use_Case.png>
-Package pdftex.def Info: include/User_Use_Case.png used on input line 52.
+Package pdftex.def Info: include/User_Use_Case.png used on input line 48.
 (pdftex.def)             Requested size: 504.38828pt x 248.43004pt.
 
-Overfull \hbox (49.14417pt too wide) in paragraph at lines 52--53
+Overfull \hbox (49.14417pt too wide) in paragraph at lines 48--49
  [] 
  []
 
@@ -605,7 +605,7 @@ Overfull \hbox (49.14417pt too wide) in paragraph at lines 52--53
 File: include/State_Diagram.png Graphic file (type png)
 
 <use include/State_Diagram.png>
-Package pdftex.def Info: include/State_Diagram.png used on input line 70.
+Package pdftex.def Info: include/State_Diagram.png used on input line 67.
 (pdftex.def)             Requested size: 452.18828pt x 202.25513pt.
  [3 <./include/User_Use_Case.png (PNG copy)> <./include/State_Diagram.png (PNG 
 copy)>]
@@ -613,67 +613,67 @@ copy)>]
 File: include/classDiagram.png Graphic file (type png)
 
 <use include/classDiagram.png>
-Package pdftex.def Info: include/classDiagram.png used on input line 82.
+Package pdftex.def Info: include/classDiagram.png used on input line 80.
 (pdftex.def)             Requested size: 395.83003pt x 263.33463pt.
  [4 <./include/classDiagram.png>] [5]
 <include/testTable.pdf, id=34, page=1, 597.23125pt x 845.1575pt>
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 1>
-Package pdftex.def Info: include/testTable.pdf, page1 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page1 used on input line 99.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: include/testTable.pdf Graphic file (type pdf)
  <use include/testTable.pdf, page 1>
-Package pdftex.def Info: include/testTable.pdf, page1 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page1 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 1>
-Package pdftex.def Info: include/testTable.pdf, page1 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page1 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
  <use include/testTable.pdf, page 1>
-Package pdftex.def Info: include/testTable.pdf, page1 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page1 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 1>
-Package pdftex.def Info: include/testTable.pdf, page1 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page1 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
  [6 <./include/testTable.pdf>]
 <include/testTable.pdf, id=77, page=2, 597.23125pt x 845.1575pt>
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 2>
-Package pdftex.def Info: include/testTable.pdf, page2 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page2 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
  <use include/testTable.pdf, page 2>
-Package pdftex.def Info: include/testTable.pdf, page2 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page2 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 2>
-Package pdftex.def Info: include/testTable.pdf, page2 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page2 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
  [7 <./include/testTable.pdf>]
 <include/testTable.pdf, id=93, page=3, 597.23125pt x 845.1575pt>
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 3>
-Package pdftex.def Info: include/testTable.pdf, page3 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page3 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
  <use include/testTable.pdf, page 3>
-Package pdftex.def Info: include/testTable.pdf, page3 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page3 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: include/testTable.pdf Graphic file (type pdf)
 
 <use include/testTable.pdf, page 3>
-Package pdftex.def Info: include/testTable.pdf, page3 used on input line 101.
+Package pdftex.def Info: include/testTable.pdf, page3 used on input line 99.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
  [8 <./include/testTable.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 112--113
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
 
  []
 
@@ -681,10 +681,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--113
 File: include/Sequence_Diagram.png Graphic file (type png)
 
 <use include/Sequence_Diagram.png>
-Package pdftex.def Info: include/Sequence_Diagram.png used on input line 118.
+Package pdftex.def Info: include/Sequence_Diagram.png used on input line 116.
 (pdftex.def)             Requested size: 489.32693pt x 696.34987pt.
 
-Overfull \hbox (34.08282pt too wide) in paragraph at lines 118--119
+Overfull \hbox (34.08282pt too wide) in paragraph at lines 116--117
  [] 
  []
 
@@ -706,8 +706,8 @@ File: include/cucumber_results.png Graphic file (type png)
 <use include/cucumber_results.png>
 Package pdftex.def Info: include/cucumber_results.png used on input line 158.
 (pdftex.def)             Requested size: 203.76074pt x 55.2061pt.
- [11 <./include/graphOutput.png> <./include/cucumber_results.png>] <include/cov
-erage.png, id=121, 1265.72874pt x 682.55pt>
+ [11 <./include/graphOutput.png>]
+<include/coverage.png, id=121, 1265.72874pt x 682.55pt>
 File: include/coverage.png Graphic file (type png)
 
 <use include/coverage.png>
@@ -723,7 +723,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
-[12 <./include/coverage.png>] [13]
+[12 <./include/cucumber_results.png> <./include/coverage.png>] [13]
 Overfull \hbox (3.34875pt too wide) in paragraph at lines 256--257
 []\T1/cmr/m/n/10 To learn how to use cu-cum-ber I used the fol-low-ing tu-to-ri
 al: http://loudcoding.com/posts/quick-
@@ -749,7 +749,7 @@ Here is how much of TeX's memory you used:
  8276 multiletter control sequences out of 15000+600000
  15374 words of font info for 47 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,18n,51p,536b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,51p,542b,431s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/cm
 -super/cm-super-t1.enc}</usr/local/texlive/2013/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm
@@ -759,7 +759,7 @@ er/sfbx1440.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super
 /sfrm1000.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/s
 frm1200.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/cm-super/sfr
 m1728.pfb>
-Output written on CSA_report.pdf (15 pages, 629609 bytes).
+Output written on CSA_report.pdf (15 pages, 630714 bytes).
 PDF statistics:
  158 PDF objects out of 1000 (max. 8388607)
  102 compressed objects within 2 object streams

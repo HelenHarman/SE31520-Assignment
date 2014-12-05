@@ -6,11 +6,13 @@
 \contentsline {subsection}{\numberline {2.2}State Diagram}{3}
 \contentsline {section}{\numberline {3}Design}{4}
 \contentsline {subsection}{\numberline {3.1}Class Diagram}{4}
-\contentsline {section}{\numberline {4}Test Strategy}{4}
+\contentsline {section}{\numberline {4}Test Strategy}{5}
 \contentsline {subsection}{\numberline {4.1}A few of the issues found}{9}
 \contentsline {subsection}{\numberline {4.2}Script To Execute Tests}{9}
-\contentsline {subsection}{\numberline {4.3}Test Results}{11}
+\contentsline {subsection}{\numberline {4.3}Helper Files}{11}
+\contentsline {subsection}{\numberline {4.4}Test Results}{11}
 \contentsline {section}{\numberline {5}Critical Evaluation}{12}
-\contentsline {subsection}{\numberline {5.1}Technologies Used}{13}
-\contentsline {subsection}{\numberline {5.2}Problems Encounter}{13}
+\contentsline {subsection}{\numberline {5.1}Technologies Used}{12}
+\contentsline {subsection}{\numberline {5.2}Mark}{13}
+\contentsline {subsection}{\numberline {5.3}Problems Encounter}{13}
 \contentsline {section}{\numberline {6}Attributions}{14}
